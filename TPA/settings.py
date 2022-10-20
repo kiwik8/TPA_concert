@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -127,7 +132,12 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 STRIPE_PUBLIC_KEY = "pk_test_51LujZ6Fo3msg8YF5q4lyRP7vTLfaRvpqJASeKlYVEzAfKIwAUUp41DYLVTXpslqNda1pIzpvlLSVbTZTMfrxJ69c00E4LvVsMz"
 STRIPE_SECRET_KEY = "sk_test_51LujZ6Fo3msg8YF57aNJ7Pm4vffKCdPTxmqbzHa0k9aukEKTk6iSvUwbeSz1Ih9Xhlxk7bSKM34wO1A8fp3uF1ay00XVnA4N9j"
 STRIPE_WEBHOOK_SECRET = "whsec_2d5bdb86c0d5dbf5ee17670e9efdfa5710513777bbef5e3461a601783c3050b1"
+
+EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

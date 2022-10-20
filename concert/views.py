@@ -77,6 +77,6 @@ def stripe_webhook(request):
 
         Client.objects.create(email=customer_email)
 
-        send_mail("Test order", "J'adore la beuh", "gouverneur.martin@hotmail.com", [customer_email])
+        send_mail("Test order", "J'adore la beuh", settings.EMAIL_HOST_USER, [customer_email])
 
     return HttpResponse(status=200)
