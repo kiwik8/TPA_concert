@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class EmailClient(models.Model):
+class Newsletter(models.Model):
     email = models.EmailField(unique=True)
     date = models.DateTimeField(auto_now_add=True)
 
@@ -17,3 +17,7 @@ class Price(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     stripe_price_id = models.CharField(max_length=100)
     price = models.IntegerField(default=0)
+
+class Client(models.Model):
+    email = models.EmailField()
+    date = models.DateTimeField(auto_now_add=True)
