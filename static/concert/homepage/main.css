@@ -64,3 +64,14 @@
   .mask span:nth-child(4) {
     background-image: linear-gradient(45deg, #fa7671 50%, #f45f7f);
   }
+
+  @media only screen and (max-width: 600px) {
+    h2 {
+      width: 100%;
+      
+    }
+    h2 div {
+      font-size: 45px;
+    }
+  }
+  

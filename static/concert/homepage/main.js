@@ -18,6 +18,6 @@ setInterval(function () {
 document.addEventListener('keydown', function(event){
     $.get("home", function(data) {
         $('html').html(data);
-        console.log("updated")
+        console.log("updated");
     })
 })
