@@ -4,7 +4,8 @@ import concert.views
 from concert.views import CreateCheckoutSessionView, CancelView, SuccessView, stripe_webhook
 
 urlpatterns = [
-    path('', concert.views.index),
+    path('', concert.views.homepage),
+    path('home', concert.views.index),
     path('suscribe', concert.views.suscribe, name="suscribe"),
     path('cancel', CancelView.as_view(), name="cancel"),
     path('success', SuccessView.as_view(), name="success"),

@@ -13,6 +13,11 @@ import stripe
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+
+def homepage(request):
+    return render(request, 'concert/homepage.html')
+
+
 def index(request):
     return render(request, 'concert/index.html')
 
