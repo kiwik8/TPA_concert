@@ -1,14 +1,5 @@
-<html>
+{% extends 'concert/base.html' %}
 
-<head>
-    <title>Checkout canceled</title>
-</head>
-
-<body>
-    <section>
-        <p>Order failed</p>
-        <p>Forgot to add something to your cart? <a href="/">Try again</a></p>
-    </section>
-</body>
-
-</html>
+{% block content %}
+    {% include 'concert/elements/cancel.html' %}
+{% endblock content %}

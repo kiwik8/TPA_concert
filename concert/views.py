@@ -14,12 +14,6 @@ import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-def homepage(request):
-    return render(request, 'concert/homepage.html')
-
-
-def index(request):
-    return render(request, 'concert/index.html')
 
 
 @csrf_protect
@@ -85,3 +79,18 @@ def stripe_webhook(request):
         send_mail("Test order", "J'adore la beuh", settings.EMAIL_HOST_USER, [customer_email])
 
     return HttpResponse(status=200)
+
+def homepage(request):
+    if 'redirected' in request.COOKIES:
+        return render(request, 'concert/homepage.html')
+    else:
+        return redirect_to(request)
+
+
+def redirect_to(request):
+    if 'redirected' in request.COOKIES:
+        return render(request, 'concert/index.html')
+    else:
+        response = render(request, 'concert/homepage.html')
+        response.set_cookie('redirected', 'true', max_age=60*2)
+        return response
