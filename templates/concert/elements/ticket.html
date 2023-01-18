@@ -1,0 +1,26 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'concert/ticket.css' %}">
+
+<widget type="ticket" class="--flex-column"> 
+    <div class="top --flex-column">
+       <div class="bandname -bold">Concert</div>
+       <div class="tourname">BEA7S</div>
+       <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/199011/concert.png" alt="" />
+       <div class="deetz --flex-row-j!sb">
+          <div class="event --flex-column">
+             <div class="date">1er avril 2023</div>
+             <div class="location -bold">Rue du prebytère, 1A Tamines</div>
+          </div>
+          <div class="price --flex-column">
+             <div class="label">Prix</div>
+             <div class="cost -bold">5€</div>
+          </div> 
+       </div> 
+    </div>
+    <div class="rip"></div>
+    <div class="bottom --flex-row-j!sb">
+       <div class="barcode"></div>
+       <a class="buy" href="#">ACHETER</a>
+    </div>
+ </widget>

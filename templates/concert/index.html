@@ -1,43 +1,19 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-     <title>Concert</title>
-     <link rel="stylesheet" href="{% static 'concert/index.css' %}">
-     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
-  crossorigin="anonymous"></script>
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous">
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-          crossorigin="anonymous">
-</head>
-<body>
+{% extends 'concert/base.html' %}
+{% block content %}
      <header>
-          <nav class="navbar navbar-expand-md navbar-dark bg-dark-secondary">
-               <div class="container">
-                    <a class="navbar-brand" href="#">Concert</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                         <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
-                         <ul class="navbar-nav ml-auto">
-                              <li class="nav-item active">
-                                   <a class="nav-link text-uppercase font-weight-100 letter-spacing-4px" href="#">Accueil
-                                        <span class="sr-only">(current)</span>
-                                   </a>
-                              </li>
-                              <li class="nav-item">
-                                   <a class="nav-link text-uppercase font-weight-100 letter-spacing-4px" href="#">A propos</a>
-                              </li>
-                         </ul>
-                    </div>
-               </div>
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">Concert</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+               <a class="nav-item nav-link active" href="#">Accueil<span class="sr-only">(current)</span></a>
+               <a class="nav-item nav-link" href="#">A propos</a>
+          </div>
+          </div>
           </nav>
      </header>
-     
      <main>
           <section class="background grid grid-center" id="showcase-background-1">
                <div class="container text-white">
@@ -53,7 +29,7 @@
                     </form>
                </div>
           </section>
-     
+          
           <section class="pb-5 pt-5 bg-dark-secondary">
                <div class="container">
                     <div class="row">
@@ -79,107 +55,97 @@
                                         <h3>Jonathan Smith</h3>
                                         <p>April 13<sup>th</sup> 2018 <br> <span class="font-weight-100">Join us for a combination of the most talented artists in the industry. This concert will be a musical adventure, one like
                                              you have never been in before.</span></p>
-                                        <a class="text-red text-uppercase font-weight-bold" href="#">More Info</a>
+                                             <a class="text-red text-uppercase font-weight-bold" href="#">More Info</a>
+                                        </div>
+                                   </aside>
+                              </div>
+                         </div>
+                    </div>
+               </section>
+               
+               <section class="background pb-5 pt-5 text-white text-center" id="showcase-background-2">
+                    <div class="container">
+                         <h2 class="text-uppercase display-4">Latest Artists</h2>
+                         <hr class="hr-red">
+                         <p>Find out more about the latest talent in the industry. Look through their eyes as you see what inspires them to create music. As they go thorugh their musical quest  to storm the charts see how each of them deal with roadblocks and the personal struggles they need to overcome.</p>
+                         
+                         <div class="card-deck mt-5 mb-3 text-center">
+                              <div class="card mb-4 box-shadow border-0 h-500px">
+                                   <img class="position-absolute cover" src="https://raw.githubusercontent.com/Jesus-E-Rodriguez/Concert/master/images/member2.jpg" alt="Steven Lee">
+                                   <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">Steven Lee</h4>
+                              </div>
+                              <div class="card mb-4 box-shadow border-0  h-500px">
+                                   <img class="position-absolute cover" src="https://raw.githubusercontent.com/Jesus-E-Rodriguez/Concert/master/images/member1.jpg" alt="Wesley Francis">
+                                   <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">Wesley Francis</h4>
+                              </div>
+                              
+                              <div class="card mb-4 box-shadow border-0  h-500px">
+                                   <img class="position-absolute cover" src="https://raw.githubusercontent.com/Jesus-E-Rodriguez/Concert/master/images/member3.jpg" alt="Jake Lively">
+                                   <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">Jake Lively</h4>
+                              </div>
+                         </div>
+                    </section>
+                    <section class="pb-5 pt-5 bg-dark-secondary text-white text-center">
+                         <h2 class="text-uppercase display-4">Des questions?</h2>
+                         <hr class="hr-red">
+                         <form class="text-left container mt-5" action="#" method="POST">
+                              <div class="row">
+                                   <div class="col-12 col-lg-6">
+                                        <div class="form-group position-relative">
+                                             <input class="form-outline-gray" name="firstname" id="firstname" type="text" required>
+                                             <label class="label-absolute" for="firstname">Prénom</label>
+                                        </div>
                                    </div>
-                              </aside>
-                         </div>
+                                   <div class="col-12 col-lg-6">
+                                        <div class="form-group position-relative">
+                                             <input class="form-outline-gray" name="lastname" id="lastname" type="text" required>
+                                             <label class="label-absolute" for="lastname">Nom</label>
+                                        </div>
+                                   </div>
+                                   <div class="col-12">
+                                        <div class="form-group position-relative">
+                                             <input class="form-outline-gray" name="email" id="email" type="email" required>
+                                             <label class="label-absolute" for="email">Email</label>
+                                        </div>
+                                        
+                                        <div class="form-group position-relative">
+                                             <input class="form-outline-gray" name="subject" id="subject" type="subject" required>
+                                             <label class="label-absolute" for="subject">Objet</label>
+                                        </div>
+                                        
+                                        <div class="form-group position-relative">
+                                             <input class="form-outline-gray" name="message" id="message" type="message" required>
+                                             <label class="label-absolute" for="message">Message</label>
+                                        </div>
+                                   </div>
+                              </div>
+                              <input class="pr-5 pl-5 pt-2 pb-2 btn text-uppercase font-weight-bold text-red btn-outline-red" type="submit" name="send" id="send" value="Send">
+                         </form>
+                    </section>
+                    
+               </main>
+               
+               <footer class="text-white pt-3 pb-3">
+                    <div class="container d-flex align-items-center justify-content-between">
+                         <small>Concert CSA 2023. All rights reserved.</small>
+                         <ul class="list-unstyled d-flex p-0 m-0">
+                              <li class="p-3">
+                                   <a class="text-white text-decoration-none" href="#">
+                                        <i class="fab fa-facebook-f"></i>
+                                   </a>
+                              </li>
+                              <li class="p-3">
+                                   <a class="text-white text-decoration-none" href="#">
+                                        <i class="fab fa-instagram"></i>
+                                   </a>
+                              </li>
+                              <li class="p-3">
+                                   <a class="text-white text-decoration-none" href="#">
+                                        <i class="fab fa-twitter"></i>
+                                   </a>
+                              </li>
+                         </ul>
                     </div>
-               </div>
-          </section>
+               </footer>
      
-          <section class="background pb-5 pt-5 text-white text-center" id="showcase-background-2">
-               <div class="container">
-                    <h2 class="text-uppercase display-4">Latest Artists</h2>
-                    <hr class="hr-red">
-                    <p>Find out more about the latest talent in the industry. Look through their eyes as you see what inspires them to create music. As they go thorugh their musical quest  to storm the charts see how each of them deal with roadblocks and the personal struggles they need to overcome.</p>
-     
-                    <div class="card-deck mt-5 mb-3 text-center">
-                         <div class="card mb-4 box-shadow border-0 h-500px">
-                              <img class="position-absolute cover" src="https://raw.githubusercontent.com/Jesus-E-Rodriguez/Concert/master/images/member2.jpg" alt="Steven Lee">
-                              <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">Steven Lee</h4>
-                         </div>
-                         <div class="card mb-4 box-shadow border-0  h-500px">
-                              <img class="position-absolute cover" src="https://raw.githubusercontent.com/Jesus-E-Rodriguez/Concert/master/images/member1.jpg" alt="Wesley Francis">
-                              <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">Wesley Francis</h4>
-                         </div>
-     
-                         <div class="card mb-4 box-shadow border-0  h-500px">
-                              <img class="position-absolute cover" src="https://raw.githubusercontent.com/Jesus-E-Rodriguez/Concert/master/images/member3.jpg" alt="Jake Lively">
-                              <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">Jake Lively</h4>
-                         </div>
-                    </div>
-          </section>
-     
-          <section class="pb-5 pt-5 text-white text-center">
-               <h2 class="text-uppercase display-4">Latest Updates</h2>
-               <hr class="hr-red">
-               <br>
-               <h3 class="mt-5 fab fa-twitter"></h3>
-               <p class="font-weight-100 letter-spacing-4px"><i class="fas fa-quote-left"></i> I am looking foward to attending the Jonathan Smith's Concert!!! <i class="fas fa-quote-right"></i></p>
-               <a class="text-red" href="#">@aconcertfan</a>
-          </section>
-     
-          <section class="pb-5 pt-5 bg-dark-secondary text-white text-center">
-               <h2 class="text-uppercase display-4">Contact Us</h2>
-               <hr class="hr-red">
-               <form class="text-left container mt-5" action="#" method="POST">
-                    <div class="row">
-                         <div class="col-12 col-lg-6">
-                              <div class="form-group position-relative">
-                                   <input class="form-outline-gray" name="firstname" id="firstname" type="text" required>
-                                   <label class="label-absolute" for="firstname">First Name</label>
-                              </div>
-                         </div>
-                         <div class="col-12 col-lg-6">
-                              <div class="form-group position-relative">
-                                   <input class="form-outline-gray" name="lastname" id="lastname" type="text" required>
-                                   <label class="label-absolute" for="lastname">Last Name</label>
-                              </div>
-                         </div>
-                         <div class="col-12">
-                              <div class="form-group position-relative">
-                                   <input class="form-outline-gray" name="email" id="email" type="email" required>
-                                   <label class="label-absolute" for="email">Email</label>
-                              </div>
-     
-                              <div class="form-group position-relative">
-                                   <input class="form-outline-gray" name="subject" id="subject" type="subject" required>
-                                   <label class="label-absolute" for="subject">Subject</label>
-                              </div>
-     
-                              <div class="form-group position-relative">
-                                   <input class="form-outline-gray" name="message" id="message" type="message" required>
-                                   <label class="label-absolute" for="message">Message</label>
-                              </div>
-                         </div>
-                    </div>
-                    <input class="pr-5 pl-5 pt-2 pb-2 btn text-uppercase font-weight-bold text-red btn-outline-red" type="submit" name="send" id="send" value="Send">
-               </form>
-          </section>
-     
-     </main>
-     
-     <footer class="text-white pt-3 pb-3">
-          <div class="container d-flex align-items-center justify-content-between">
-               <small>Concert CSA 2023. All rights reserved.</small>
-               <ul class="list-unstyled d-flex p-0 m-0">
-                    <li class="p-3">
-                         <a class="text-white text-decoration-none" href="#">
-                                   <i class="fab fa-facebook-f"></i>
-                              </a>
-                    </li>
-                    <li class="p-3">
-                         <a class="text-white text-decoration-none" href="#">
-                                   <i class="fab fa-instagram"></i>
-                              </a>
-                    </li>
-                    <li class="p-3">
-                         <a class="text-white text-decoration-none" href="#">
-                                   <i class="fab fa-twitter"></i>
-                              </a>
-                    </li>
-               </ul>
-          </div>
-     </footer>
-</body>
-</html>
+{% endblock content %}

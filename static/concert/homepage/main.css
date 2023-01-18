@@ -9,7 +9,7 @@
     min-height: 100vh;
   }
   
-  h2 {
+  h2#homepage{
     width: 980px;
     font-size: 100px;
     font-family: Helvetica;
