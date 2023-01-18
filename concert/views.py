@@ -82,7 +82,9 @@ def stripe_webhook(request):
 
 def homepage(request):
     if 'redirected' in request.COOKIES:
-        return render(request, 'concert/homepage.html')
+        response = render(request, 'concert/homepage.html')
+        response.delete_cookie('redirected')
+        return response
     else:
         return redirect_to(request)
 

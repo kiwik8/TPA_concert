@@ -1,4 +1,5 @@
 {% extends 'concert/base.html' %}
+{% load static %}
 {% block content %}
      <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/195/195123.png" type="image/png">
      <header>
@@ -21,7 +22,7 @@
                     <h1 class="display-2 mb-3">Achetez vos tickets!</h1>
                     <div class="row">
                          <div class="col-12 col-lg-8">
-                              <p>Préparez vous pour le concert de BEA7S en collaboration avec Pcaps, Varna et d'autres..</p>
+                              <p>Préparez vous pour le concert de BEA7S avec Jeune X, Skanda, Lousoliter</p>
                          </div>
                     </div>
                     <form action="{% url 'create-checkout-session' %}" method="POST">
@@ -35,28 +36,26 @@
                <div class="container">
                     <div class="row">
                          <div class="col-12 col-lg-6 text-white">
-                              <h2 class="text-uppercase display-4">Upcoming Events</h2>
+                              <h2 class="text-uppercase display-4">Restez informés!</h2>
                               <hr class="hr-red">
-                              <p class="mt-5 font-weight-100 letter-spacing-4px">Make sure you stay up to date with the latest concert news. Get the best discount alerts when you sign up today.</p>
+                              <p class="mt-5 font-weight-100 letter-spacing-4px">Ne manquez rien de l'actualité de BEA7S, inscrivez-vous à notre newsletter pour être au courant des dernières nouveautés et avoir accès à des offres exclusives.</p>
                               <form action="{% url 'suscribe' %}" method="POST">
                                    {% csrf_token %}
                                    <div class="form-group position-relative">
                                         <input class="form-outline-gray" name="email" id="email" type="email" required>
                                         <label class="label-absolute" for="email">Email</label>
                                    </div>
-                                   <input class="mb-4 pr-5 pl-5 pt-2 pb-2 btn text-uppercase font-weight-bold text-red btn-outline-red" type="submit" name="send" id="send" value="S'inscrire">
+                                   <input class="mb-4 pr-5 pl-5 pt-2 pb-2 btn text-uppercase font-weight-bold text-red btn-outline-white" type="submit" name="send" id="send" value="S'inscrire">
                               </form>
                          </div>
-                         <div class="col-12 col-lg-6">
-                              <aside class="card box-shadow bg-dark-primary text-white">
+                         <div class="col-12 col-lg-6" style="display: flex; justify-content: center;">
+                              <aside class="card box-shadow bg-dark-primary" style="width: 370px;">
                                    <div class="card-header p-0">
-                                        <img class="cover" src="https://raw.githubusercontent.com/Jesus-E-Rodriguez/Concert/master/images/singer.jpg" alt="Singer">
+                                        <img class="cover img-fluid img-thumbnail" src="{% static 'concert/singer.png' %}" alt="Singer" style="width: 370px; height: auto;">
                                    </div>
                                    <div class="card-body">
-                                        <h3>Jonathan Smith</h3>
-                                        <p>April 13<sup>th</sup> 2018 <br> <span class="font-weight-100">Join us for a combination of the most talented artists in the industry. This concert will be a musical adventure, one like
-                                             you have never been in before.</span></p>
-                                             <a class="text-red text-uppercase font-weight-bold" href="#">More Info</a>
+                                        <h3>Ben Elleboudt</h3>
+                                        <p>8 Janvier 2005<br> <span class="font-weight-100">Ne manquez pas le concert de BEA7S, achetez vos tickets maintenant pour une soirée inoubliable ! </span></p>
                                         </div>
                                    </aside>
                               </div>
@@ -66,23 +65,21 @@
                
                <section class="background pb-5 pt-5 text-white text-center" id="showcase-background-2">
                     <div class="container">
-                         <h2 class="text-uppercase display-4">Latest Artists</h2>
+                         <h2 class="text-uppercase display-4">Artistes</h2>
                          <hr class="hr-red">
-                         <p>Find out more about the latest talent in the industry. Look through their eyes as you see what inspires them to create music. As they go thorugh their musical quest  to storm the charts see how each of them deal with roadblocks and the personal struggles they need to overcome.</p>
-                         
                          <div class="card-deck mt-5 mb-3 text-center">
                               <div class="card mb-4 box-shadow border-0 h-500px">
-                                   <img class="position-absolute cover" src="https://raw.githubusercontent.com/Jesus-E-Rodriguez/Concert/master/images/member2.jpg" alt="Steven Lee">
-                                   <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">Steven Lee</h4>
+                                   <img class="position-absolute cover" src="{% static 'concert/medias/artist1.jpg' %}" alt="BEA7S">
+                                   <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">BEA7S</h4>
                               </div>
                               <div class="card mb-4 box-shadow border-0  h-500px">
-                                   <img class="position-absolute cover" src="https://raw.githubusercontent.com/Jesus-E-Rodriguez/Concert/master/images/member1.jpg" alt="Wesley Francis">
-                                   <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">Wesley Francis</h4>
+                                   <img class="position-absolute cover" src="{% static 'concert/medias/artist2.jpg' %}" alt="Jeune X">
+                                   <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">Jeune X</h4>
                               </div>
                               
                               <div class="card mb-4 box-shadow border-0  h-500px">
-                                   <img class="position-absolute cover" src="https://raw.githubusercontent.com/Jesus-E-Rodriguez/Concert/master/images/member3.jpg" alt="Jake Lively">
-                                   <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">Jake Lively</h4>
+                                   <img class="position-absolute cover" src="{% static 'concert/medias/artist3.jpg' %}" alt="Skanda">
+                                   <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">Skanda</h4>
                               </div>
                          </div>
                     </section>
@@ -109,10 +106,6 @@
                                              <label class="label-absolute" for="email">Email</label>
                                         </div>
                                         
-                                        <div class="form-group position-relative">
-                                             <input class="form-outline-gray" name="subject" id="subject" type="subject" required>
-                                             <label class="label-absolute" for="subject">Objet</label>
-                                        </div>
                                         
                                         <div class="form-group position-relative">
                                              <input class="form-outline-gray" name="message" id="message" type="message" required>
@@ -120,7 +113,7 @@
                                         </div>
                                    </div>
                               </div>
-                              <input class="pr-5 pl-5 pt-2 pb-2 btn text-uppercase font-weight-bold text-red btn-outline-red" type="submit" name="send" id="send" value="Send">
+                              <input class="pr-5 pl-5 pt-2 pb-2 btn text-uppercase font-weight-bold text-red btn-outline-white" type="submit" name="send" id="send" value="Send">
                          </form>
                     </section>
                     
