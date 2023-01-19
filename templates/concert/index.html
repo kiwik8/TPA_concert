@@ -39,7 +39,7 @@
                               <h2 class="text-uppercase display-4">Restez informés!</h2>
                               <hr class="hr-red">
                               <p class="mt-5 font-weight-100 letter-spacing-4px">Ne manquez rien de l'actualité de BEA7S, inscrivez-vous à notre newsletter pour être au courant des dernières nouveautés et avoir accès à des offres exclusives.</p>
-                              <form action="{% url 'suscribe' %}" method="POST">
+                              <form action="{% url 'subscribe' %}" method="POST">
                                    {% csrf_token %}
                                    <div class="form-group position-relative">
                                         <input class="form-outline-gray" name="email" id="email" type="email" required>
