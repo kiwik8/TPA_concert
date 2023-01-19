@@ -30,13 +30,15 @@ def subscribe(request):
 
 class CreateCheckoutSessionView(View):
     def post(self, request, *args, **kwargs):
+        if request.method == "POST":
+            quantity = int(request.POST.get('quantity'))
         price = Price.objects.get(id=1)
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[
                 {
                     'price': price.stripe_price_id,
-                    'quantity': 1,
+                    'quantity': quantity,
                 },
             ],
             mode='payment',
@@ -126,3 +128,4 @@ def redirect_to(request):
 
 def mail_view(request):
     return render(request, 'concert/mail.html')
+

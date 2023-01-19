@@ -133,3 +133,30 @@ a.text-red:hover {
 	transform: scale(1.15);
 	transition-duration: 600ms;
 }
+
+#quantity {
+	padding: 15px;
+	margin-left: 15px;
+	background-color: #f8174b;
+	border-radius: 10px;
+	color: #f2f4f3;
+}
+
+#buy{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: flex-start;
+}
+
+#acheter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	border-radius: 10px;
+	background-color: #f8174b;
+	color: #f2f4f3;
+	padding: 10px;
+	margin: 10px;
+	width: 100%;
+}

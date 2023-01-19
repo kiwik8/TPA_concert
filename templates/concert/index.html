@@ -25,10 +25,15 @@
                               <p>Préparez vous pour le concert de BEA7S avec Jeune X, Skanda, Lousoliter</p>
                          </div>
                     </div>
-                    <form action="{% url 'create-checkout-session' %}" method="POST">
-                         {% csrf_token %}
-                         <a class="pr-5 pl-5 pt-2 pb-2 text-white btn text-uppercase font-weight-bold btn-gradient" href="#" onclick="this.closest('form').submit(); return false;">Acheter</a>
-                    </form>
+                    <div class="row">
+                         <form id="buy" action="{% url 'create-checkout-session' %}" method="POST">
+                              {% csrf_token %}
+                              <a id="acheter" class="pr-5 pl-5 pt-2 pb-2 text-white btn text-uppercase font-weight-bold btn-gradient" href="#" onclick="this.closest('form').submit(); return false;">Acheter</a>
+                              <div id="quantity" class="text-uppercase text-white btn-gradient btn-outline-white">
+                                   Quantité : <input class="" type="number" name="quantity" value="1" min="1" max="10">
+                              </div>
+                         </form>
+                    </div>
                </div>
           </section>
           
@@ -119,7 +124,7 @@
                     </section>
                     
                </main>
-               <footer class="text-black pt-3 pb-3">
+               <footer class="text-black">
                     <div class="container d-flex align-items-center justify-content-between">
                          <small>Concert CSA 2023. All rights reserved.</small>
                          <ul class="list-unstyled d-flex p-0 m-0">
