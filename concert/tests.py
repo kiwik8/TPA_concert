@@ -64,6 +64,7 @@ class TestUrls(TestCase):
         self.assertEqual(status_code, 405)
     def test_post_create_checkout_session_url(self):
         url = reverse("create-checkout-session")
+        context = {"quantity": 1}
         response = self.client.post(url)
         status_code = response.status_code
         self.assertEquals(resolve(url).func.view_class, CreateCheckoutSessionView)
