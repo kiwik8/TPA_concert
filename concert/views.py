@@ -8,7 +8,7 @@ from django.views import View
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.views.decorators.csrf import csrf_protect
-from concert.models import Newsletter, Price, Client, Question
+from concert.models import Price, Client, Question
 from django.shortcuts import redirect
 from django.urls import resolve
 import stripe
@@ -23,7 +23,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 def subscribe(request):
     if request.method == "POST":
         email = request.POST.get('email')
-        Newsletter.objects.create(email=email)
+        Client.objects.create(email=email)
         return render(request, 'concert/success.html', {"message": "Merci pour votre inscription à la newsletter"})
     else:
         return render(request, 'concert/cancel.html', {"message" : "INVALID METHOD"})

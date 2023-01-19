@@ -2,9 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-class Newsletter(models.Model):
-    email = models.EmailField(unique=True)
-    date = models.DateTimeField(auto_now_add=True)
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
@@ -18,12 +15,20 @@ class Price(models.Model):
     stripe_price_id = models.CharField(max_length=100)
     price = models.IntegerField(default=0)
 
+
 class Client(models.Model):
     email = models.EmailField()
     date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        name = self.email.split("@")[0]
+        return name + " " + str(self.date)
 
 class Question(models.Model):
     fisrt_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
     message = models.TextField()
+
+    def __str__(self):
+        return self.fisrt_name + " " + self.last_name
