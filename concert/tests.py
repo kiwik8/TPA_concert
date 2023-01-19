@@ -50,7 +50,7 @@ class TestUrls(TestCase):
         url = reverse("subscribe")
         email = "test@gmail.com"
         response = self.client.post(url, {"email": email})
-        client = Newsletter.objects.get(email=email)
+        client = Client.objects.get(email=email)
         status_code = response.status_code
         self.assertEquals(resolve(url).func, subscribe)
         self.assertEqual(status_code, 200)
