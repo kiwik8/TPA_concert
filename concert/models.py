@@ -21,3 +21,9 @@ class Price(models.Model):
 class Client(models.Model):
     email = models.EmailField()
     date = models.DateTimeField(auto_now_add=True)
+
+class Question(models.Model):
+    fisrt_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()

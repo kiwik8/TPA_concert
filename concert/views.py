@@ -1,13 +1,16 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.views.decorators.csrf import csrf_protect
-from concert.models import Newsletter, Price, Client
+from concert.models import Newsletter, Price, Client, Question
 from django.shortcuts import redirect
+from django.urls import resolve
 import stripe
 # Create your views here.
 
@@ -46,6 +49,10 @@ class CreateCheckoutSessionView(View):
 
 class SuccessView(TemplateView):
     template_name = "concert/success.html"
+    def get_context_data(self, **kwargs):
+        context = super(SuccessView, self).get_context_data(**kwargs)
+        context['message'] = "Paiement effectué avec succès"
+        return context
 
 
 class CancelView(TemplateView):
@@ -75,8 +82,16 @@ def stripe_webhook(request):
         payment_intent = session["payment_intent"]
 
         Client.objects.create(email=customer_email)
-
-        send_mail("Test order", "J'adore la beuh", settings.EMAIL_HOST_USER, [customer_email])
+        #url = request.build_absolute_uri('/view_mail/')
+        #pdf = weasyprint.HTML(url=url).write_pdf()
+        open('ticket.pdf', 'wb').write(pdf)
+        subject = 'Ticket de réservation pour le concert de BEA7S'
+        html_message = render_to_string('concert/mail.html')
+        plain_message = strip_tags(html_message)
+        from_email = 'From <martingouv2005@hotmail.com>'
+        to = customer_email
+        send_mail(subject, plain_message, from_email, [to], html_message=html_message)
+        #send_mail("Ticket de réservation pour le concert de BEA7S", "Facture", settings.EMAIL_HOST_USER, [customer_email])
 
     return HttpResponse(status=200)
 
@@ -90,9 +105,19 @@ def homepage(request):
 
 
 def redirect_to(request):
+    if request.POST:
+        first_name = request.POST.get('firstname')
+        last_name = request.POST.get('lastname')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        Question.objects.create(fisrt_name=first_name, last_name=last_name, email=email, message=message)
+        return render(request, 'concert/success.html', {'message': "Question envoyée"})
     if 'redirected' in request.COOKIES:
         return render(request, 'concert/index.html')
     else:
         response = render(request, 'concert/homepage.html')
         response.set_cookie('redirected', 'true', max_age=60*2)
         return response
+
+def mail_view(request):
+    return render(request, 'concert/mail.html')

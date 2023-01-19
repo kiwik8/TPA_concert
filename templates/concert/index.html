@@ -68,16 +68,16 @@
                          <h2 class="text-uppercase display-4">Artistes</h2>
                          <hr class="hr-red">
                          <div class="card-deck mt-5 mb-3 text-center">
-                              <div class="card mb-4 box-shadow border-0 h-500px">
+                              <div class="card mb-4 box-shadow border-0 h-500px artist" id="artist1">
                                    <img class="position-absolute cover" src="{% static 'concert/medias/artist1.jpg' %}" alt="BEA7S">
                                    <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">BEA7S</h4>
                               </div>
-                              <div class="card mb-4 box-shadow border-0  h-500px">
+                              <div class="card mb-4 box-shadow border-0  h-500px artist" id="artist2">
                                    <img class="position-absolute cover" src="{% static 'concert/medias/artist2.jpg' %}" alt="Jeune X">
                                    <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">Jeune X</h4>
                               </div>
                               
-                              <div class="card mb-4 box-shadow border-0  h-500px">
+                              <div class="card mb-4 box-shadow border-0  h-500px artist" id="artist3">
                                    <img class="position-absolute cover" src="{% static 'concert/medias/artist3.jpg' %}" alt="Skanda">
                                    <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">Skanda</h4>
                               </div>
@@ -87,6 +87,7 @@
                          <h2 class="text-uppercase display-4">Des questions?</h2>
                          <hr class="hr-red">
                          <form class="text-left container mt-5" action="#" method="POST">
+                              {% csrf_token %}
                               <div class="row">
                                    <div class="col-12 col-lg-6">
                                         <div class="form-group position-relative">
@@ -140,5 +141,5 @@
                          </ul>
                     </div>
                </footer>
-     
+               <script src="{% static 'concert/index.js' %}"></script>
 {% endblock content %}

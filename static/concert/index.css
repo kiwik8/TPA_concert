@@ -127,3 +127,9 @@ a.text-red:hover {
 .h-500px {
 	height: 500px;
 }
+
+.artist:hover{
+	cursor: pointer;
+	transform: scale(1.15);
+	transition-duration: 600ms;
+}
