@@ -15,9 +15,12 @@ import os
 import environ
 
 
-env = environ.Env()
-environ.Env.read_env('config.env')
-
+if os.environ.get('local') == 'True':
+    env = environ.Env()
+    environ.Env.read_env('config.env')
+else:
+    env = environ.Env()
+    environ.Env.read_env('github_config.env')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
