@@ -15,21 +15,22 @@ import os
 import dj_database_url
 import environ
 
+production = os.environ.get('production')
+if production == 'true':
+    production = True
+else:
+    production = False
 
-if os.environ.get('local') == 'true':
+
+if production is True:
     env = environ.Env()
     environ.Env.read_env('config.env')
-else:
+elif production is False:
     env = environ.Env()
     environ.Env.read_env('prod_config.env')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-IS_HEROKU = env("PROD")
-
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -41,9 +42,9 @@ if 'SECRET_KEY' in os.environ:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Generally avoid wildcards(*). However since Heroku router provides hostname validation it is ok
-if IS_HEROKU:
+if production is True:
     ALLOWED_HOSTS = ["*"]
-else:
+elif production is False:
     ALLOWED_HOSTS = []
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -97,7 +98,7 @@ WSGI_APPLICATION = 'TPA.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-if IS_HEROKU == True:
+if production is True:
     DATABASES = {
         'default': dj_database_url.config(
             default= f"postgres://postgres:{os.environ.get('DB_PASSWORD')}@{os.environ.get('DB_HOST')}:5432/concert",
@@ -105,13 +106,12 @@ if IS_HEROKU == True:
             conn_health_checks=True,
         ),
     }
-else:
+elif production is False:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': 'db.sqlite3',
         }}
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
