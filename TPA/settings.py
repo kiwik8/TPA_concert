@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'TPA.wsgi.application'
 
 
 
-if 'IS_HEROKU' in os.environ:
+if IS_HEROKU:
     DATABASES = {
         'default': {
         'ENGINE': 'django.db.backends.postgresql',
