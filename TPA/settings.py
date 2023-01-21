@@ -169,5 +169,5 @@ EMAIL_USE_TLS = True
 
 if production is True:
     STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
-    STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
-    STRIPE_WEBHOOK = os.environ.get("STRIPE_WEBHOOK")
+    STRIPE_SECRET_KEY = os.environ.get("STRIPE_PRIVATE_KEY")
+    STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK")
