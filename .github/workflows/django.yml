@@ -36,7 +36,7 @@ jobs:
         python manage.py makemigrations
         python manage.py migrate
         python manage.py collectstatic --noinput
-        python manage.py refreshdb
+        python manage.py testdb
         python manage.py test
 
     - name: Heroku Django Deploy
