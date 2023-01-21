@@ -7,6 +7,9 @@ env:
   STRIPE_PRODUCT_ID: ${{ secrets.STRIPE_PRODUCT_ID }}
   STRIPE_PRICE_ID: ${{ secrets.STRIPE_PRICE_ID }}
   production: ${{ secrets.PRODUCTION }}
+  STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
+  STRIPE_PRIVATE_KEY: ${{ secrets.STRIPE_PRIVATE_KEY }}
+  STRIPE_WEBHOOK: ${{ secrets.STRIPE_WEBHOOK }}
 
 
 on:

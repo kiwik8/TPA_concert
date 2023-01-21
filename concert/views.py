@@ -15,10 +15,10 @@ from django.urls import resolve
 import stripe
 # Create your views here.
 
+
+
+
 stripe.api_key = settings.STRIPE_SECRET_KEY
-
-
-
 
 @csrf_protect
 def subscribe(request):
