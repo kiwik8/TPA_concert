@@ -2,6 +2,8 @@ name: Django CI
 
 env:
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  DB_HOST: ${{ secrets.DB_HOST }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
 
 
 on:
