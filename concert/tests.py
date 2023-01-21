@@ -11,8 +11,14 @@ logger = logging.getLogger("Logs")
 class TestUrls(TestCase):
 
     def setUp(self):
-        self.product = Product.objects.create(name="Ticket", stripe_product_id="prod_Me1k1TJJqAUbNH", stock=50)
-        self.price = Price.objects.create(product=self.product, stripe_price_id="price_1LujhEFo3msg8YF5NiXH1IYk", price=10)
+        if settings.PROD is True:
+            self.stripe_product_id = os.environ.get("STRIPE_PRODUCT_ID")
+            self.stripe_price_id = os.environ.get("STRIPE_PRICE_ID")
+            self.product = Product.objects.create(name="Ticket", stripe_product_id=self.stripe_product_id, stock=50)
+            self.price = Price.objects.create(product=self.product, stripe_price_id=self.stripe_price_id, price=10)
+        else:
+            self.product = Product.objects.create(name="Ticket", stripe_product_id="prod_Me1k1TJJqAUbNH", stock=50)
+            self.price = Price.objects.create(product=self.product, stripe_price_id="price_1LujhEFo3msg8YF5NiXH1IYk", price=10)
 
     def test_index_url(self):
         url = reverse('index')
@@ -86,8 +92,14 @@ class TestUrls(TestCase):
 class TestProducts(TestCase):
 
     def setUp(self):
-        self.product = Product.objects.create(name="Ticket", stripe_product_id="prod_Me1k1TJJqAUbNH", stock=50)
-        self.price = Price.objects.create(product=self.product, stripe_price_id="price_1LujhEFo3msg8YF5NiXH1IYk", price=10)
+        if settings.PROD is True:
+            self.stripe_product_id = os.environ.get("STRIPE_PRODUCT_ID")
+            self.stripe_price_id = os.environ.get("STRIPE_PRICE_ID")
+            self.product = Product.objects.create(name="Ticket", stripe_product_id=self.stripe_product_id, stock=50)
+            self.price = Price.objects.create(product=self.product, stripe_price_id=self.stripe_price_id, price=10)
+        else:
+            self.product = Product.objects.create(name="Ticket", stripe_product_id="prod_Me1k1TJJqAUbNH", stock=50)
+            self.price = Price.objects.create(product=self.product, stripe_price_id="price_1LujhEFo3msg8YF5NiXH1IYk", price=10)
 
     def test_product(self):
         self.assertEqual(self.product.name, "Ticket")
