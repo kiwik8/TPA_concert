@@ -98,10 +98,11 @@ if IS_HEROKU:
     DATABASES = {
         'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'OPTIONS': {
-            'service': 'dbservice',
-            'passfile': '.my_pgpass',
-        }
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': 'kiwik8.ddns.net',
+        'PORT': '5432',
     }}
 else:
     DATABASES = {
