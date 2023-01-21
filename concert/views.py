@@ -30,9 +30,13 @@ def subscribe(request):
 
 class CreateCheckoutSessionView(View):
     def post(self, request, *args, **kwargs):
-        if request.method == "POST":
-            quantity = int(request.POST.get('quantity'))
+        quantity = int(request.POST.get('quantity'))
         price = Price.objects.get(id=1)
+        product = price.product
+        product.stock -= quantity
+        product.save()
+        if product.stock <=0:
+            return render(request, 'concert/cancel.html', {"message" : "Plus de place disponible"}, status=201)
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[

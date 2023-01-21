@@ -1,5 +1,6 @@
 from concert.models import Product, Price
 from django.core.management.base import BaseCommand
+from django.conf import settings
 
 
 class Command(BaseCommand):
@@ -9,7 +10,8 @@ class Command(BaseCommand):
         print("https://dashboard.stripe.com/test/products/")
         name = input("Entrer le nom du produit: ")
         stripe_product_id = input("Entre le stripe_product_id: ")
-        product = Product.objects.create(name=name, stripe_product_id=stripe_product_id)
+        stock = settings.STOCK
+        product = Product.objects.create(name=name, stripe_product_id=stripe_product_id, stock=stock)
         print("Produit créé avec succès")
         price = input("Entrer le prix du produit: ")
         stripe_price_id = input("Entrer le stripe_price_id: ")
