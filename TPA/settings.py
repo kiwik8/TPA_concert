@@ -92,12 +92,7 @@ WSGI_APPLICATION = 'TPA.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+
 
 if 'IS_HEROKU' in os.environ:
     DATABASES = {
@@ -108,6 +103,13 @@ if 'IS_HEROKU' in os.environ:
             'passfile': '.my_pgpass',
         }
     }}
+else:
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
