@@ -19,7 +19,7 @@ import environ
 if os.environ.get('local'):
     env = environ.Env()
     environ.Env.read_env('config.env')
-elif os.environ.get('github'):
+else:
     env = environ.Env()
     environ.Env.read_env('github_config.env')
 
