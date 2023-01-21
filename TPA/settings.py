@@ -21,6 +21,7 @@ if production == 'true':
 else:
     production = False
 
+print(production)
 
 if production is True:
     env = environ.Env()
