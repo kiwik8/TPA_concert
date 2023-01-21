@@ -6,6 +6,7 @@ env:
   DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
   STRIPE_PRODUCT_ID: ${{ secrets.STRIPE_PRODUCT_ID }}
   STRIPE_PRICE_ID: ${{ secrets.STRIPE_PRICE_ID }}
+  production: ${{ secrets.PRODUCTION }}
 
 
 on:
