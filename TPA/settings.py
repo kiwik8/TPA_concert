@@ -99,7 +99,7 @@ if IS_HEROKU:
         'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'OPTIONS': {
-            'service': '.pg_service.conf',
+            'service': 'dbservice',
             'passfile': '.my_pgpass',
         }
     }}
