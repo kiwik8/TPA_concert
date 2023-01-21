@@ -11,7 +11,7 @@ logger = logging.getLogger("Logs")
 class TestUrls(TestCase):
 
     def setUp(self):
-        self.product = Product.objects.create(name="Ticket", stripe_product_id="prod_Me1k1TJJqAUbNH")
+        self.product = Product.objects.create(name="Ticket", stripe_product_id="prod_Me1k1TJJqAUbNH", stock=50)
         self.price = Price.objects.create(product=self.product, stripe_price_id="price_1LujhEFo3msg8YF5NiXH1IYk", price=10)
 
     def test_index_url(self):

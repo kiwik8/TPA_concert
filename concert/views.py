@@ -31,7 +31,7 @@ def subscribe(request):
 class CreateCheckoutSessionView(View):
     def post(self, request, *args, **kwargs):
         quantity = int(request.POST.get('quantity'))
-        price = Price.objects.get(id=1)
+        price = Price.objects.order_by("id").first()
         product = price.product
         product.stock -= quantity
         product.save()
