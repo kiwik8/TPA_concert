@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'TPA.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-if IS_HEROKU:
+if IS_HEROKU == True:
     DATABASES = {
         'default': dj_database_url.config(
             default= f"postgres://postgres:{os.environ.get('DB_PASSWORD')}@{os.environ.get('DB_HOST')}:5432/concert",
