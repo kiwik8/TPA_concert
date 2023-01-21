@@ -21,7 +21,7 @@ if production == 'true':
 else:
     production = False
 
-print(production)
+
 
 if production is False:
     env = environ.Env()
@@ -50,7 +50,7 @@ elif production is False:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #if not IS_HEROKU:
-DEBUG = True
+DEBUG = production
 # Application definition
 
 INSTALLED_APPS = [
@@ -166,3 +166,8 @@ EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+if production is True:
+    STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
+    STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
+    STRIPE_WEBHOOK = os.environ.get("STRIPE_WEBHOOK")
