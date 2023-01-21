@@ -1,4 +1,5 @@
 from django.views.decorators.csrf import csrf_exempt
+from django.urls import reverse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
@@ -35,6 +36,8 @@ class CreateCheckoutSessionView(View):
         product = price.product
         product.stock -= quantity
         product.save()
+        success_url = resolve('success')
+        cancel_url = resolve('cancel')
         if product.stock <=0:
             return render(request, 'concert/cancel.html', {"message" : "Plus de place disponible"}, status=201)
         checkout_session = stripe.checkout.Session.create(
@@ -46,8 +49,8 @@ class CreateCheckoutSessionView(View):
                 },
             ],
             mode='payment',
-            success_url=settings.BASE_URL + '/success',
-            cancel_url=settings.BASE_URL + '/cancel',
+            success_url= success_url,
+            cancel_url=cancel_url,
         )
         return redirect(checkout_session.url)
 
