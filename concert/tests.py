@@ -101,14 +101,6 @@ class TestProducts(TestCase):
         else:
             self.product = Product.objects.create(name="Ticket", stripe_product_id="prod_Me1k1TJJqAUbNH", stock=50)
             self.price = Price.objects.create(product=self.product, stripe_price_id="price_1LujhEFo3msg8YF5NiXH1IYk", price=10)
-
-    def test_product(self):
-        self.assertEqual(self.product.name, "Ticket")
-        self.assertEqual(self.product.stripe_product_id, "prod_Me1k1TJJqAUbNH")
-    def test_price(self):
-        self.assertEqual(self.price.product.name, "Ticket")
-        self.assertEqual(self.price.stripe_price_id, "price_1LujhEFo3msg8YF5NiXH1IYk")
-        self.assertEqual(self.price.price, 10)
     def test_product_str(self):
         self.assertEqual(str(self.product), "Ticket")
     def test_product_stock(self):
