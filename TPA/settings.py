@@ -27,7 +27,7 @@ else:
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 IS_HEROKU = env("DYNO")
-if IS_HEROKU == 'true':
+if IS_HEROKU == "true":
     IS_HEROKU = True
 else:
     IS_HEROKU = False
