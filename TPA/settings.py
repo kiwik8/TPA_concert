@@ -23,10 +23,10 @@ else:
 
 print(production)
 
-if production is True:
+if production is False:
     env = environ.Env()
     environ.Env.read_env('config.env')
-elif production is False:
+elif production is True:
     env = environ.Env()
     environ.Env.read_env('prod_config.env')
 
