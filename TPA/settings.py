@@ -50,7 +50,7 @@ elif production is False:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #if not IS_HEROKU:
-DEBUG = production
+DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -145,6 +145,8 @@ USE_I18N = True
 USE_TZ = True
 
 BASE_URL = "http://127.0.0.1:8000"
+if production is True:
+    BASE_URL = "https://concert-tickets.herokuapp.com"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -171,3 +173,5 @@ if production is True:
     STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
     STRIPE_SECRET_KEY = os.environ.get("STRIPE_PRIVATE_KEY")
     STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK")
+
+PROD = production

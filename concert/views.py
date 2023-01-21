@@ -36,8 +36,8 @@ class CreateCheckoutSessionView(View):
         product = price.product
         product.stock -= quantity
         product.save()
-        success_url = resolve('success')
-        cancel_url = resolve('cancel')
+        success = reverse('success')
+        cancel = reverse('cancel')
         if product.stock <=0:
             return render(request, 'concert/cancel.html', {"message" : "Plus de place disponible"}, status=201)
         checkout_session = stripe.checkout.Session.create(
@@ -49,8 +49,8 @@ class CreateCheckoutSessionView(View):
                 },
             ],
             mode='payment',
-            success_url= success_url,
-            cancel_url=cancel_url,
+            success_url= settings.BASE_URL + '/success',
+            cancel_url=settings.BASE_URL + '/cancel',
         )
         return redirect(checkout_session.url)
 
@@ -66,7 +66,7 @@ class SuccessView(TemplateView):
 class CancelView(TemplateView):
     template_name = "concert/cancel.html"
     def get_context_data(self, **kwargs):
-        context = super(SuccessView, self).get_context_data(**kwargs)
+        context = super(CancelView, self).get_context_data(**kwargs)
         context['message'] = "Paiement annulé"
         return context
 
