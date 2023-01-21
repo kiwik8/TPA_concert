@@ -12,10 +12,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 import environ
 
 
-if os.environ.get('local') == 'True':
+if os.environ.get('local'):
     env = environ.Env()
     environ.Env.read_env('config.env')
 else:
@@ -25,6 +26,10 @@ else:
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 IS_HEROKU = env("DYNO")
+if IS_HEROKU == 'true':
+    IS_HEROKU = True
+else:
+    IS_HEROKU = False
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -91,27 +96,20 @@ WSGI_APPLICATION = 'TPA.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-
-
 if IS_HEROKU:
     DATABASES = {
-        'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': 'kiwik8.ddns.net',
-        'PORT': '5432',
-    }}
+        'default': dj_database_url.config(
+            default= f"postgres://postgres:{os.environ.get('DB_PASSWORD')}@{os.environ.get('DB_HOST')}:5432/concert",
+            conn_max_age=600,
+            conn_health_checks=True,
+        ),
+    }
 else:
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'db.sqlite3',
+        }}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
