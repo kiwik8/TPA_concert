@@ -99,6 +99,16 @@ DATABASES = {
     }
 }
 
+if 'IS_HEROKU' in os.environ:
+    DATABASES = {
+        'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'OPTIONS': {
+            'service': '.pg_service.conf',
+            'passfile': '.my_pgpass',
+        }
+    }}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

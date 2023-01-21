@@ -3,3 +3,5 @@ config.env
 __pycache__
 db.sqlite3
 staticfiles/
+.my_pgpass
+.pg_service.conf
