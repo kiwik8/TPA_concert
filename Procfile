@@ -1,1 +1,1 @@
-web: gunicorn TPA:concert
+web: gunicorn TPA.wsgi --log-file -
