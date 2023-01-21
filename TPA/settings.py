@@ -16,7 +16,7 @@ import dj_database_url
 import environ
 
 
-if os.environ.get('local'):
+if os.environ.get('local') == 'true':
     env = environ.Env()
     environ.Env.read_env('config.env')
 else:
