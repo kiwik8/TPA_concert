@@ -4,6 +4,8 @@ env:
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
   DB_HOST: ${{ secrets.DB_HOST }}
   DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  STRIPE_PRODUCT_ID: ${{ secrets.STRIPE_PRODUCT_ID }}
+  STRIPE_PRICE_ID: ${{ secrets.STRIPE_PRICE_ID }}
 
 
 on:
@@ -36,7 +38,7 @@ jobs:
         python manage.py makemigrations
         python manage.py migrate
         python manage.py collectstatic --noinput
-        python manage.py testdb
+        python manage.py initdb
         python manage.py test
 
     - name: Heroku Django Deploy
