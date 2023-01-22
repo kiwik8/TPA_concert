@@ -1,9 +1,10 @@
 from django.views.decorators.csrf import csrf_exempt
+import os
 from django.urls import reverse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import TemplateView
@@ -12,6 +13,7 @@ from django.views.decorators.csrf import csrf_protect
 from concert.models import Price, Client, Question
 from django.shortcuts import redirect
 from django.urls import resolve
+from django.templatetags.static import static
 import stripe
 # Create your views here.
 
@@ -136,3 +138,9 @@ def redirect_to(request):
 def mail_view(request):
     return render(request, 'concert/mail.html')
 
+def download(request):
+    file_path = static("concert/medias/story.mp4")
+    with open(file_path, 'rb') as fh:
+        response = HttpResponse(fh.read(), content_type="video/mp4")
+        response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+        return response

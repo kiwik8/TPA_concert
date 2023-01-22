@@ -34,3 +34,6 @@ function checkRedirectCookie() {
 document.addEventListener('keydown', function(event) {
   document.location.href = "/home";
 });
+document.addEventListener('click', function(event) {
+  document.location.href = "/home";
+});

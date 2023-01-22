@@ -1,3 +1,33 @@
+body{
+  height: 100vh;
+}
+
+
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#menu-button{
+  visibility: hidden;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  color: green;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
+}
+#menu-button:hover{
+  background-color: green;
+  color: white;
+}
+
 svg {
     width: 100px;
     display: block;
@@ -27,10 +57,10 @@ svg {
     font-size: 1.25em;
   }
   p.success {
-    color: #73AF55;
+    color: #55af89;
   }
   p.error {
-    color: #D06079;
+    color: #6d313e;
   }
   @-webkit-keyframes dash {
     0% {
@@ -64,4 +94,11 @@ svg {
       stroke-dashoffset: 900;
     }
   }
+
+@media screen and (max-width: 800px) {
+  #menu-button{
+    visibility: visible;
+  }
+}
+
   

@@ -33,3 +33,4 @@ class Question(models.Model):
 
     def __str__(self):
         return self.fisrt_name + " " + self.last_name
+
