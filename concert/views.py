@@ -61,7 +61,11 @@ class SuccessView(TemplateView):
     template_name = "concert/success.html"
     def get_context_data(self, **kwargs):
         context = super(SuccessView, self).get_context_data(**kwargs)
-        context['message'] = "Paiement effectué avec succès"
+        if context['message'] == None:
+            context['paid'] = True
+            context['message'] = "Paiement effectué avec succès"
+        else:
+            context['paid'] = False
         return context
 
 
@@ -111,29 +115,18 @@ def stripe_webhook(request):
     except KeyError as e:
         return HttpResponse(status=405)
 
-def homepage(request):
-    if 'redirected' in request.COOKIES:
-        response = render(request, 'concert/homepage.html')
-        response.delete_cookie('redirected')
-        return response
-    else:
-        return redirect_to(request)
 
 
 def redirect_to(request):
-    if request.POST:
+    try:
         first_name = request.POST.get('firstname')
         last_name = request.POST.get('lastname')
         email = request.POST.get('email')
         message = request.POST.get('message')
         Question.objects.create(fisrt_name=first_name, last_name=last_name, email=email, message=message)
         return render(request, 'concert/success.html', {'message': "Question envoyée"})
-    if 'redirected' in request.COOKIES:
-        return render(request, 'concert/index.html')
-    else:
-        response = render(request, 'concert/homepage.html')
-        response.set_cookie('redirected', 'true', max_age=60*2)
-        return response
+    except:
+        return render(request, 'concert/cancel.html', {'message': "Erreur, contactez l'admin : Martin Gouverneur"})
 
 def mail_view(request):
     return render(request, 'concert/mail.html')
@@ -144,3 +137,8 @@ def download(request):
         response = HttpResponse(fh.read(), content_type="video/mp4")
         response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
         return response
+
+def index(request):
+    if request.method == "POST":
+        return redirect_to(request)
+    return render(request, 'concert/index.html')
