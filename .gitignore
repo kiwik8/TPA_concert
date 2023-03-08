@@ -5,3 +5,4 @@ db.sqlite3
 staticfiles/
 .my_pgpass
 .pg_service.conf
+static/concert/medias/new/

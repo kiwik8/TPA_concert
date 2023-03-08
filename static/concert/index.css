@@ -28,7 +28,7 @@ body {
 
 #showcase-background-1 {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url("https://raw.githubusercontent.com/Jesus-E-Rodriguez/Concert/master/images/guitar.jpg");
+		url("/static/concert/medias/home.png");
 	height: 800px;
 }
 
@@ -36,8 +36,11 @@ body {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
 		url("https://raw.githubusercontent.com/Jesus-E-Rodriguez/Concert/master/images/audience.jpg");
 }
+#showcase-background-3 {
+	background: #000000;
+}
 .btn-gradient {
-	background: linear-gradient(217deg, #f8174b, #7f1fa3 70.71%);
+	background: linear-gradient(45deg, rgb(63, 100, 37), rgb(63, 110, 37) 90.71%);
 	border: 1px solid rgba(72, 48, 48, 0.5);
 }
 .cover {
@@ -55,7 +58,7 @@ body {
 }
 
 .text-red {
-	color: #f8174b;
+	color: rgb(63, 100, 37);
 }
 
 a.text-red:hover {
@@ -111,7 +114,7 @@ a.text-red:hover {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 	border: 0;
-	border-top: 3px solid rgb(248, 23, 75);
+	border-top: 3px solid rgb(63, 100, 37);
 	width: 15em;
 }
 
@@ -130,8 +133,8 @@ a.text-red:hover {
 
 .artist:hover{
 	cursor: pointer;
-	transform: scale(1.15);
-	transition-duration: 600ms;
+	transform: scale(1.13);
+	transition-duration: 200ms;
 }
 
 #quantity {
@@ -159,4 +162,24 @@ a.text-red:hover {
 	padding: 10px;
 	margin: 10px;
 	width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+	/* Ne pas appliquer la transformation d'échelle et ne rien faire */
+	.artist:hover{
+		transform: none;
+	}
+  }
+
+
+.infos{
+	list-style-type: none;
+}
+
+.question{
+	font-weight: bold;
+	font-size: 2em;
+}
+.answer{
+	font-size: 1em;
 }
