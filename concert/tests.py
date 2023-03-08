@@ -25,27 +25,8 @@ class TestUrls(TestCase):
         url = reverse('index')
         response = self.client.get(url)
         status_code = response.status_code
-        self.assertEquals(resolve(url).func, redirect_to)
+        self.assertEquals(resolve(url).func, index)
         self.assertEqual(status_code, 200)
-        self.assertTemplateUsed(response, "concert/homepage.html")
-    def test_home_url(self):
-        url = reverse('home')
-        response = self.client.get(url)
-        status_code = response.status_code
-        self.assertTrue("redirected" in response.cookies)
-        self.assertEquals(resolve(url).func, redirect_to)
-        self.assertEqual(status_code, 200)
-        self.assertTemplateUsed(response, "concert/homepage.html")
-    def test_homepage_url(self):
-        url = reverse('homepage')
-        response = self.client.get(url)
-        status_code = response.status_code
-        self.assertEquals(resolve(url).func, homepage)
-        self.assertEqual(status_code, 200)
-        self.assertTemplateUsed(response, "concert/homepage.html")
-        url = reverse('index')
-        response = self.client.get(url)
-        self.assertFalse("redirected" in response.cookies)
         self.assertTemplateUsed(response, "concert/index.html")
     def test_get_subscribe_url(self):
         url = reverse('subscribe')
