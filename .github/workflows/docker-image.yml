@@ -15,4 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build  -t concert:$(date +%s) -f DockerFile .
+      run: docker build  -t concert -f DockerFile .
+    - name: Pull the image to the HUB
+      run: docker push martingouv/concert
