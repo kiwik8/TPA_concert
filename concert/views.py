@@ -15,7 +15,6 @@ from django.shortcuts import redirect
 from django.urls import resolve
 from django.templatetags.static import static
 import stripe
-import openai
 # Create your views here.
 
 
@@ -107,9 +106,6 @@ def stripe_webhook(request):
             payment_intent = session["payment_intent"]
 
             Client.objects.create(name=customer_name, email=customer_email)
-
-
-
         return HttpResponse(status=200)
     except KeyError as e:
         return HttpResponse(status=405)
