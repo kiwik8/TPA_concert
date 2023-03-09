@@ -137,6 +137,7 @@ a.text-red:hover {
 	transition-duration: 200ms;
 }
 
+
 #quantity {
 	padding: 15px;
 	margin-left: 15px;
@@ -164,10 +165,15 @@ a.text-red:hover {
 	width: 100%;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 767px) {
 	/* Ne pas appliquer la transformation d'échelle et ne rien faire */
 	.artist:hover{
 		transform: none;
+	}
+
+	#showcase-background-1 {
+		background-position-x: 22%; /* Décale l'image centrée vers la gauche */
+    	background-repeat: no-repeat;
 	}
   }
 

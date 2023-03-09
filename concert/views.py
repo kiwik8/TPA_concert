@@ -15,6 +15,7 @@ from django.shortcuts import redirect
 from django.urls import resolve
 from django.templatetags.static import static
 import stripe
+import openai
 # Create your views here.
 
 
@@ -61,12 +62,17 @@ class SuccessView(TemplateView):
     template_name = "concert/success.html"
     def get_context_data(self, **kwargs):
         context = super(SuccessView, self).get_context_data(**kwargs)
-        if context['message'] == None:
+        try:
+            if context['message'] is None:
+                context['paid'] = True
+                context['message'] = "Paiement effectué avec succès"
+            else:
+                context['paid'] = False
+            return context
+        except KeyError:
             context['paid'] = True
             context['message'] = "Paiement effectué avec succès"
-        else:
-            context['paid'] = False
-        return context
+            return context
 
 
 class CancelView(TemplateView):
@@ -97,19 +103,12 @@ def stripe_webhook(request):
         if event['type'] == 'checkout.session.completed':
             session = event['data']['object']
             customer_email = session["customer_details"]["email"]
+            customer_name = session["customer_details"]["name"]
             payment_intent = session["payment_intent"]
 
-            Client.objects.create(email=customer_email)
-            #url = request.build_absolute_uri('/view_mail/')
-            #pdf = weasyprint.HTML(url=url).write_pdf()
-            open('ticket.pdf', 'wb').write(pdf)
-            subject = 'Ticket de réservation pour le concert de BEA7S'
-            html_message = render_to_string('concert/mail.html')
-            plain_message = strip_tags(html_message)
-            from_email = 'From <martingouv2005@hotmail.com>'
-            to = customer_email
-            send_mail(subject, plain_message, from_email, [to], html_message=html_message)
-            #send_mail("Ticket de réservation pour le concert de BEA7S", "Facture", settings.EMAIL_HOST_USER, [customer_email])
+            Client.objects.create(name=customer_name, email=customer_email)
+
+
 
         return HttpResponse(status=200)
     except KeyError as e:

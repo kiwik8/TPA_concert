@@ -15,32 +15,31 @@ function copyStringToClipboard (str) {
     document.body.removeChild(el);
     }
 function getOut() {
-    location.href = document.location.href;
+    location.href = url;
 
 }
-var menuButton = document.getElementById("menu-button");
-var menu = document.getElementById("menu");
-var i = false
+const menuButton = document.getElementById("menu-button");
+const menu = document.getElementById("menu");
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+var i = false;
+let style = window.getComputedStyle(menuButton);
+var visibility = style.getPropertyValue('visibility');
+console.log(visibility);
+if (visibility == "hidden") {
+    setTimeout(getOut, 2000);
+}
+else {
+    menuButton.addEventListener("click", function(event) {
+    if (i == false) {
+        event.preventDefault();
+        menu.style.display = "flex";
+        copyStringToClipboard(url);
+        i = true;
+        setTimeout(getOut, 20000);
+      }})}
 if (menuButton == null) {
     setTimeout(getOut, 2000);
-    } 
-    else {
-        menuButton.addEventListener("click", function(event) {
-          if (i == false) {
-            event.preventDefault();
-            menu.style.display = "flex";
-            copyStringToClipboard(url);
-            i = true;
-            setTimeout(getOut, 20000);
-          }
-          else {
-        event.preventDefault();
-        menu.style.display = "none";
-        i = false;
-          }
-      })
-    }
+  }
   
 
 

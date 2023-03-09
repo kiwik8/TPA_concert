@@ -20,10 +20,10 @@ class Price(models.Model):
 class Client(models.Model):
     email = models.EmailField()
     date = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=100)
 
     def __str__(self):
-        name = self.email.split("@")[0]
-        return name + " " + str(self.date)
+        return self.name
 
 class Question(models.Model):
     fisrt_name = models.CharField(max_length=100)
