@@ -4,6 +4,11 @@ body {
 	background: #182430;
 }
 
+
+.black{
+	color: #000000;
+}
+
 .font-weight-100 {
 	font-weight: 100;
 }
@@ -27,14 +32,12 @@ body {
 }
 
 #showcase-background-1 {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url("/static/concert/medias/home.png");
+	background-image: url("/static/concert/medias/home.png");
 	height: 800px;
 }
 
 #showcase-background-2 {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url("https://raw.githubusercontent.com/Jesus-E-Rodriguez/Concert/master/images/audience.jpg");
+	background-image: url("https://raw.githubusercontent.com/Jesus-E-Rodriguez/Concert/master/images/audience.jpg");
 }
 #showcase-background-3 {
 	background: #000000;
@@ -58,7 +61,8 @@ body {
 }
 
 .text-red {
-	color: rgb(63, 100, 37);
+	color: rgb(172, 186, 171);
+	font-weight: bold;
 }
 
 a.text-red:hover {
@@ -114,7 +118,7 @@ a.text-red:hover {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 	border: 0;
-	border-top: 3px solid rgb(63, 100, 37);
+	border-top: 3px solid rgb(172, 186, 171);
 	width: 15em;
 }
 
@@ -172,7 +176,7 @@ a.text-red:hover {
 	}
 
 	#showcase-background-1 {
-		background-position-x: 22%; /* Décale l'image centrée vers la gauche */
+		background-position-x: 0%; /* Décale l'image centrée vers la gauche */
     	background-repeat: no-repeat;
 	}
   }
