@@ -75,8 +75,8 @@ class TestProducts(TestCase):
 
     def setUp(self):
         if settings.PROD is True:
-            self.stripe_product_id = os.environ.get("STRIPE_PRODUCT_ID")
-            self.stripe_price_id = os.environ.get("STRIPE_PRICE_ID")
+            self.stripe_product_id = settings.STRIPE_PRODUCT_ID
+            self.stripe_price_id = settings.STRIPE_PRICE_ID
             self.product = Product.objects.create(name="Ticket", stripe_product_id=self.stripe_product_id, stock=50)
             self.price = Price.objects.create(product=self.product, stripe_price_id=self.stripe_price_id, price=10)
         else:

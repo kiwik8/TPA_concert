@@ -35,9 +35,11 @@ jobs:
           EMAIL_HOST=${{ secrets.EMAIL_HOST }}
           EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }}
           EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }}
+          STRIPE_PRODUCT_ID=${{ secrets.STRIPE_PRODUCT_ID }}
+          STRIPE_PRICE_ID=${{ secrets.STRIPE_PRICE_ID }}
           production=${{ secrets.PRODUCTION }}
         push: true
         tags: martingouv/concert:latest
-        platforms: "linux/amd64,linux/arm64,linux/arm/v7"
+        platforms: "linux/amd64,linux/arm/v7"
     
 
