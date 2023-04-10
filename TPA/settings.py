@@ -16,6 +16,12 @@ import dj_database_url
 import environ
 
 production = os.environ.get('production')
+SECRET_KEY = ""
+DB_HOST = ""
+DB_PASSWORD = ""
+
+
+
 if production == 'true':
     production = True
 else:
@@ -147,7 +153,7 @@ USE_TZ = True
 
 BASE_URL = "http://127.0.0.1:8000"
 if production is True:
-    BASE_URL = "https://concert-tpa.herokuapp.com"
+    BASE_URL = "martingouv.ddns.net"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -160,20 +166,22 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STRIPE_PUBLIC_KEY = "pk_test_51LujZ6Fo3msg8YF5q4lyRP7vTLfaRvpqJASeKlYVEzAfKIwAUUp41DYLVTXpslqNda1pIzpvlLSVbTZTMfrxJ69c00E4LvVsMz"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+STOCK = 50
+
+# exemple config
 STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
 STRIPE_WEBHOOK_SECRET = env("STRIPE_WEBHOOK_SECRET")
-STOCK = env("STOCK")
-
 EMAIL_HOST = env("EMAIL_HOST")
 EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
 
-### Config variables
+### Real Config variables
 if production is True:
+    EMAIL_HOST = os.environ.get("EMAIL_HOST")
+    EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
     STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
     STRIPE_SECRET_KEY = os.environ.get("STRIPE_PRIVATE_KEY")
     STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK")
-
-PROD = production
