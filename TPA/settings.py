@@ -16,11 +16,6 @@ import dj_database_url
 import environ
 
 production = os.environ.get('production')
-SECRET_KEY = ""
-DB_HOST = ""
-DB_PASSWORD = ""
-
-
 
 if production == 'true':
     production = True
@@ -169,19 +164,19 @@ STRIPE_PUBLIC_KEY = "pk_test_51LujZ6Fo3msg8YF5q4lyRP7vTLfaRvpqJASeKlYVEzAfKIwAUU
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 STOCK = 50
+PROD = production
 
 # exemple config
-STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
-STRIPE_WEBHOOK_SECRET = env("STRIPE_WEBHOOK_SECRET")
-EMAIL_HOST = env("EMAIL_HOST")
-EMAIL_HOST_USER = env("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+if not production:
+    STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
+    STRIPE_WEBHOOK_SECRET = env("STRIPE_WEBHOOK_SECRET")
+    EMAIL_HOST = env("EMAIL_HOST")
+    EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 
-### Real Config variables
-if production is True:
-    EMAIL_HOST = os.environ.get("EMAIL_HOST")
-    EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-    STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
-    STRIPE_SECRET_KEY = os.environ.get("STRIPE_PRIVATE_KEY")
-    STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK")
+EMAIL_HOST = os.environ.get("EMAIL_HOST")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_PRIVATE_KEY")
+STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK")
