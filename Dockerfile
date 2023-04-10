@@ -3,7 +3,7 @@
 # Section 1- Base Image
 FROM python:3.11.2-slim
 RUN apt update && apt upgrade -y
-RUN apt install libpq-dev
+RUN apt install libpq-dev -y
 RUN mkdir app/
 COPY . /app/
 WORKDIR /app/
