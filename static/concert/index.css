@@ -37,7 +37,11 @@ body {
 }
 
 #showcase-background-2 {
-	background-image: url("https://raw.githubusercontent.com/Jesus-E-Rodriguez/Concert/master/images/audience.jpg");
+	background-image: linear-gradient(
+			rgb(17, 23, 8),
+			rgba(125, 175, 71, 0.5)
+		),
+		url("/static/concert/medias/concert_fosse.png");
 }
 #showcase-background-3 {
 	background: #000000;
@@ -135,6 +139,14 @@ a.text-red:hover {
 	height: 500px;
 }
 
+.artist{
+	-webkit-filter: grayscale(100%);
+}
+
+.artist_green{
+	-webkit-filter: grayscale(0%);
+}
+
 .artist:hover{
 	cursor: pointer;
 	transform: scale(1.13);
@@ -176,7 +188,6 @@ a.text-red:hover {
 	}
 
 	#showcase-background-1 {
-		background-position-x: 0%; /* Décale l'image centrée vers la gauche */
     	background-repeat: no-repeat;
 	}
   }
@@ -192,4 +203,8 @@ a.text-red:hover {
 }
 .answer{
 	font-size: 1em;
+}
+
+.tpa_btn{
+	margin-top: 60px;
 }

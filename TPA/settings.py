@@ -160,13 +160,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STRIPE_PUBLIC_KEY = "pk_test_51LujZ6Fo3msg8YF5q4lyRP7vTLfaRvpqJASeKlYVEzAfKIwAUUp41DYLVTXpslqNda1pIzpvlLSVbTZTMfrxJ69c00E4LvVsMz"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 STOCK = 50
 PROD = production
 
 # config
+STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
 STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
 STRIPE_WEBHOOK_SECRET = env("STRIPE_WEBHOOK_SECRET")
 EMAIL_HOST = env("EMAIL_HOST")

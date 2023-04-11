@@ -9,7 +9,7 @@
                     <h1 class="display-2 mb-3">Achetez vos tickets!</h1>
                     <div class="row">
                          <div class="col-12 col-lg-8">
-                              <p>Préparez vous pour le concert de BEA7S avec Jeune X, Skanda, Lousoliter</p>
+                              <p>Préparez vous pour le concert de BEA7S avec Jeune X, Skanda, Lousoliter, Pcaps et Kios</p>
                          </div>
                     </div>
                     <div class="row">
@@ -32,8 +32,8 @@
                     <li class="infos answer">Au Quai de Scène à Auvelais, Place de la Gare 9b, 5060 Sambreville</li>
                     <li class="infos question">Quand ?</li>
                     <li class="infos answer">Le 9 juin 2023 à 20h</li>
-                    <li class="infos question">Quel est le prix pour une place?</li>
-                    <li class="infos answer">7€</li>
+                    <li class="infos question">Combien?</li>
+                    <li class="infos answer">Ticket : 7€ <br> CD : 5€ <br> Pack Ticket+CD : 10€</li>
                </ul>
           </section>
           <section class="background pb-5 pt-5 text-white text-center" id="showcase-background-2">
@@ -41,15 +41,15 @@
                     <h2 class="text-uppercase display-4">LINE-UP</h2>
                     <hr class="hr-red">
                     <div class="card-deck mt-5 mb-3 text-center">
-                         <div class="card mb-4 box-shadow border-0 h-500px" id="artist1">
-                              <img class="position-absolute cover artist" src="{% static 'concert/medias/artist1.jpg' %}" alt="BEA7S">
-                              <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">BEA7S</h4>
-                         </div>
                          <div class="card mb-4 box-shadow border-0  h-500px" id="artist2">
                               <img class="position-absolute cover artist" src="{% static 'concert/medias/artist2.jpg' %}" alt="Jeune X">
                               <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">Jeune X</h4>
                          </div>
                          
+                         <div class="card mb-4 box-shadow border-0 h-500px" id="artist1">
+                              <img class="position-absolute cover artist_green" src="{% static 'concert/medias/artist1.png' %}" alt="BEA7S">
+                              <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">BEA7S</h4>
+                         </div>
                          <div class="card mb-4 box-shadow border-0  h-500px" id="artist3">
                               <img class="position-absolute cover artist" src="{% static 'concert/medias/artist3.jpg' %}" alt="Skanda">
                               <h4 class="text-red position-bottom position-absolute position-center text-uppercase font-weight-bold">Skanda</h4>
@@ -59,28 +59,24 @@
                <section class="pb-5 pt-5 bg-dark-secondary text-center">
                     <div class="container">
                          <div class="row">
-                              <div class="col-12 col-lg-6 text-white">
-                                   <h2 class="text-uppercase display-4">Restez informés!</h2>
+                              <div class="col-10 col-lg-6 text-white">
+                                   <h2 class="text-uppercase display-4">En savoir plus...</h2>
                                    <hr class="hr-red">
-                                   <p class="mt-5 font-weight-100 letter-spacing-4px">Ne manquez rien de l'actualité de BEA7S, inscrivez-vous à notre newsletter pour être au courant des dernières nouveautés et avoir accès à des offres exclusives.</p>
-                                   <form action="{% url 'subscribe' %}" method="POST">
-                                        {% csrf_token %}
-                                        <div class="form-group position-relative">
-                                             <input class="form-outline-gray" name="email" id="email1" type="email" required>
-                                             <label class="label-absolute" for="email1">Email</label>
-                                        </div>
-                                        <input class="mb-4 pr-5 pl-5 pt-2 pb-2 btn text-uppercase font-weight-bold btn-outline-white black" type="submit" name="send" id="send" value="S'inscrire">
-                                   </form>
+                                   <p class="mt-3 font-weight-100 letter-spacing-4px" style="font-size: 20px;">L’album réalisé se compose de 8 titres tous produits par Skanda. <br><br>La tracklist contenant : Tour de la terre ; Crazy ft. Skanda; Couleurs; Memo; Walk in the city ft. Skanda, Kios; Shine ft. Jeune X; Wave; Out! crée une cohésion entre chaque musique.
+                                        <br><br> Essor inclut différents styles musicaux, les 8 titres sont variés et offrent aux auditeurs un large choix. BEA7S mélange drill, rage, trap, jersey et D3.</p>
+                                        <input class="pr-5 pl-5 pt-2 pb-2 btn text-uppercase font-weight-bold black btn-outline-white tpa_btn" type="submit" name="tpa" id="tpa" value="Voir le TPA">
                               </div>
                               <div class="col-12 col-lg-6" style="display: flex; justify-content: center;">
                                    <aside class="card box-shadow bg-dark-primary" style="width: 370px;">
                                         <div class="card-header p-0">
-                                             <img class="cover img-fluid img-thumbnail" src="{% static 'concert/medias/singer_old.jpg' %}" alt="Singer" style="width: 370px; height: auto;">
+                                             <img class="cover img-fluid img-thumbnail" src="{% static 'concert/medias/singer_new.png' %}" alt="Singer" style="width: 370px; height: auto;">
                                         </div>
                                         <div class="card-body">
                                              <h3>Essor</h3>
-                                             <p><span class="font-weight-100">Le nouvel album de BEA7S est <strong>SORTI!</strong></span></p>
-                                             <p class="font-weight-100">Cliquez <a href="#">ici</a> pour allez le stream</p>
+                                             <p><span class="font-weight-100">Le nouvel album de BEA7S sort le <strong>12 mai</strong>, clique <a href="https://linktr.ee/bea7s">ici</a> pour allez le stream</span></p>
+                                             <p class="font-weight-100">La cover représente l’album, elle a donc dû être mûrement réfléchie et travaillée aux détails près. 
+                                                  La silhouette est celle de BEA7S, une âme qui s’en échappe et se dirige vers le mot « ESSOR » représente bien toute la thématique de l’album. 
+                                                  En effet on comprend que l’artiste prend son envol et se dirige vers son propre essor.</p>
                                         </div>
                                    </aside>
                               </div>
@@ -125,7 +121,7 @@
                </main>
                <footer class="text-black">
                     <div class="container d-flex align-items-center justify-content-between">
-                         <small>Concert CSA 2023. All rights reserved.</small>
+                         <small>Ben Elleboudt, Teerohn Legrand, Martin Gouverneur. Droits réservés. &copy;</small>
                          <ul class="list-unstyled d-flex p-0 m-0">
                               <li class="p-3">
                                    <a class="text-black text-decoration-none" href="https://www.facebook.com/ben.altaica">
