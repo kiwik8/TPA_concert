@@ -15,9 +15,8 @@ import os
 import dj_database_url
 import environ
 
-production = os.environ.get('production')
 
-if production == 'true':
+if 'production' in os.environ:
     production = True
 else:
     production = False

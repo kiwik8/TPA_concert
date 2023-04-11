@@ -27,6 +27,7 @@ jobs:
       with:
         context: .
         build-args: |
+          SECRET_KEY=${{ secrets.SECRET_KEY }}
           DB_HOST=${{ secrets.DB_HOST }}
           DB_PASSWORD=${{ secrets.DB_PASSWORD }}
           STRIPE_SECRET_KEY=${{ secrets.STRIPE_PRIVATE_KEY }}
