@@ -28,7 +28,7 @@ ENV STRIPE_PRODUCT_ID=$STRIPE_PRODUCT_ID
 ARG STRIPE_PRICE_ID
 ENV STRIPE_PRICE_ID=$STRIPE_PRICE_ID
 RUN apt update && apt upgrade -y
-RUN apt install libpq-dev gcc -y
+RUN apt install libpq-dev gcc iputils-ping -y
 RUN mkdir app/
 COPY . /app/
 WORKDIR /app/
