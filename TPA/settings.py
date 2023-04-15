@@ -9,6 +9,14 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import subprocess
+def ping(ip):
+    command = ['ping', '-c', '1', '-W', '1', ip]
+    result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if result.returncode == 0:
+        return True
+    else:
+        return False
 
 from pathlib import Path
 import os
@@ -97,13 +105,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'TPA.wsgi.application'
 
+def has_numbers(inputString):
+    return any(char.isdigit() for char in inputString)
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 if production is True:
+    DB_HOST = os.environ.get('DB_HOST')
+    if not ping(DB_HOST):
+        DB_HOST = "192.168.1.3"
     DATABASES = {
         'default': dj_database_url.config(
-            default= f"postgres://postgres:{os.environ.get('DB_PASSWORD')}@{os.environ.get('DB_HOST')}:5432/postgres",
+            default= f"postgres://postgres:{os.environ.get('DB_PASSWORD')}@{DB_HOST}:5432/postgres",
             conn_max_age=600,
             conn_health_checks=True,
         ),
