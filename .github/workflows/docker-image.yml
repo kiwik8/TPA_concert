@@ -41,6 +41,6 @@ jobs:
           production=true
         push: true
         tags: martingouv/concert:latest
-        platforms: "linux/amd64,linux/arm/v7"
+        platforms: "linux/amd64 ,linux/arm/v7, linux/arm64/v8"
     
 
