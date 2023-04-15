@@ -103,7 +103,7 @@ WSGI_APPLICATION = 'TPA.wsgi.application'
 if production is True:
     DATABASES = {
         'default': dj_database_url.config(
-            default= f"postgres://postgres:{os.environ.get('DB_PASSWORD')}@{os.environ.get('DB_HOST')}:5432/concert",
+            default= f"postgres://postgres:{os.environ.get('DB_PASSWORD')}@{os.environ.get('DB_HOST')}:5432/postgres",
             conn_max_age=600,
             conn_health_checks=True,
         ),
