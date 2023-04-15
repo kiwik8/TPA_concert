@@ -9,14 +9,32 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import subprocess
-def ping(ip):
-    command = ['ping', '-c', '1', '-W', '1', ip]
-    result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    if result.returncode == 0:
-        return True
-    else:
+import socket
+def ping(ip_address):
+    # Définit le temps d'attente en secondes
+    timeout = 2
+
+    # Crée un objet de type socket pour IPv4
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    # Configure le temps d'attente de la connexion
+    sock.settimeout(timeout)
+
+    # Essaie de se connecter à l'adresse IP spécifiée sur le port 80 (HTTP)
+    try:
+        result = sock.connect_ex((ip_address, 5432))
+        if result == 0:
+            # La connexion a réussi, l'adresse IP est accessible
+            return True
+        else:
+            # La connexion a échoué, l'adresse IP n'est pas accessible
+            return False
+    except:
+        # Une erreur s'est produite lors de la tentative de connexion
         return False
+
+    # Ferme la connexion socket
+    sock.close()
 
 from pathlib import Path
 import os
