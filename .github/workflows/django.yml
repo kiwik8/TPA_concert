@@ -47,13 +47,6 @@ jobs:
         python manage.py collectstatic --noinput
         python manage.py test
 
-    - name: Heroku Django Deploy
-      uses: nyakaz73/heroku-django-deploy@v0.81
-      with: 
-        heroku_app_name : ${{ secrets.HEROKU_APP_NAME }}
-        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-        heroku_email_address: 'gouverneur.martin@hotmail.com'
-        use_git: true
-        git_branch: master
+
 
 
