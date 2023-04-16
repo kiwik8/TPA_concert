@@ -13,19 +13,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Upgrade docker-compose
-      run: |
-        sudo apt update
-        sudo apt-get remove -y docker docker-engine docker.io containerd runc 2>1 > /dev/null || true
-        sudo apt-get install -y ca-certificates curl gnupg
-        sudo mkdir -m 0755 -p /etc/apt/keyrings
-        sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-        sudo chmod a+r /etc/apt/keyrings/docker.gpg
-        sudo echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-          "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-          tee /etc/apt/sources.list.d/docker.list > /dev/null
-        sudo apt-get update
-        sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     - uses: isbang/compose-action@v1.4.1
       with:
         compose-file: "./docker-compose.prod.yml"
