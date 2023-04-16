@@ -1,0 +1,31 @@
+{% extends 'concert/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'concert/elements/buy.css' %}">
+<section class="background grid grid-center" id="showcase-background-1">
+    <div class="container text-white text-center">
+        <h1 class="title">Réserver</h1>
+        <div class="row">
+            <div class="col-4 box">
+                <img src="{% static 'concert/medias/ticket.png' %}" alt="" class="article">
+            </div>
+            <div class="col-4 box">
+                <h1 class="text-article">LES 2</h1>
+            </div>
+            <div class="col-4 box">
+                <img src="{% static 'concert/medias/cd.png' %}" alt="" class="article">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="background pb-5 pt-5 text-white text-center" id=showcase-background-3></section>
+
+
+
+
+
+
+
+{% endblock content %}
+    

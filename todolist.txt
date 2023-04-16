@@ -1,4 +1,5 @@
 TODO:
+    - Testing sur le container docker
     - Ajouter les promos et les articles
     - Ajouter le TPA
     - Tracklist mise en forme

@@ -8,12 +8,13 @@ class Command(BaseCommand):
     help = "Créer un produit et un prix pour les tests"
 
     def handle(self, *args, **options):
-        if settings.PROD:
-            stripe_product_id = os.environ.get("STRIPE_PRODUCT_ID")
-            stripe_price_id = os.environ.get("STRIPE_PRICE_ID")
-        else:
-            stripe_product_id = "prod_Me1k1TJJqAUbNH"
-            stripe_price_id = "price_1LujhEFo3msg8YF5NiXH1IYk"
-        product = Product.objects.create(name="Ticket", stripe_product_id=stripe_product_id, stock=50)
-        Price.objects.create(product=product, price=5, stripe_price_id=stripe_price_id)
-        self.stdout.write(self.style.SUCCESS("Produit et prix créés avec succès"))
+        print("Création du produit et du prix")
+        for i in range(3):
+            name = input("Nom du produit: ")
+            price = input("Prix du produit: ")
+            stock = input("Stock du produit: ")
+            product_id = input("ID du produit: ")
+            product = Product.objects.create(name=name, stock=stock, stripe_product_id=product_id)
+            price_id = input("ID du prix: ")
+            Price.objects.create(product=product, stripe_price_id=price_id, price=price)
+            print("Enregistré...")

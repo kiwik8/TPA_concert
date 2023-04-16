@@ -137,3 +137,7 @@ def index(request):
     if request.method == "POST":
         return redirect_to(request)
     return render(request, 'concert/index.html')
+
+
+def buy(request):
+    return render(request, 'concert/buy.html')

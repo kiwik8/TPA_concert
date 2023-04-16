@@ -208,3 +208,14 @@ a.text-red:hover {
 .tpa_btn{
 	margin-top: 60px;
 }
+
+.article{
+	height: 350px;
+	width: 465,5px;
+}
+
+.article:hover{
+	cursor: pointer;
+	transform: scale(1.13);
+	transition-duration: 200ms;
+}
