@@ -11,4 +11,3 @@ build_prod.sh
 run_docker.sh
 docker-compose.yml
 docker-compose.rpi.yml
-.github/workflows/docker-image.yml
