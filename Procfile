@@ -1,1 +1,0 @@
-web: gunicorn TPA.wsgi --log-file -

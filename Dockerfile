@@ -3,6 +3,8 @@
 # Section 1- Base Image
 FROM python:3.11.2-slim
 
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 ARG production
 ENV production=$production
 ARG SECRET_KEY
@@ -27,17 +29,12 @@ ARG STRIPE_PRODUCT_ID
 ENV STRIPE_PRODUCT_ID=$STRIPE_PRODUCT_ID
 ARG STRIPE_PRICE_ID
 ENV STRIPE_PRICE_ID=$STRIPE_PRICE_ID
+
+
 RUN apt update && apt upgrade -y
 RUN apt install libpq-dev gcc iputils-ping -y
-RUN mkdir app/
-COPY . /app/
-WORKDIR /app/
-
-
-
-
-
+WORKDIR /usr/src/app
 RUN pip install -U pip
+COPY ./requirements.txt .
 RUN pip install -r requirements.txt
-EXPOSE 8000
-CMD python manage.py runserver 0.0.0.0:8000
+COPY . .

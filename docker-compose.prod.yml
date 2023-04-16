@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        - production
+        - SECRET_KEY
+        - DB_HOST
+        - DB_PASSWORD
+        - EMAIL_HOST
+        - EMAIL_HOST_USER
+        - EMAIL_HOST_PASSWORD
+        - STRIPE_SECRET_KEY
+        - STRIPE_WEBHOOK
+        - STRIPE_PRODUCT_ID
+        - STRIPE_PRICE_ID
+        - STRIPE_PUBLIC_KEY
+    command: gunicorn TPA.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - app:/usr/src/app
+    expose:
+      - 8000
+    image: martingouv/concert
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    depends_on:
+      - web
+    image: martingouv/nginx
+    
+volumes:
+  app:

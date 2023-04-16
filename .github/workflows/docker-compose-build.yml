@@ -1,0 +1,35 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: isbang/compose-action@v1.4.1
+      with:
+        compose-file: "./docker/docker-compose.yml"
+        compose-flags: "--push"
+      env:
+        production: 1
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
+        EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
+        EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
+        STRIPE_SECRET_KEY: ${{ secrets.STRIPE_PRIVATE_KEY }}
+        STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
+        STRIPE_WEBHOOK: ${{ secrets.STRIPE_WEBHOOK }}
+        STRIPE_PRODUCT_ID: ${{ secrets.STRIPE_PRODUCT_ID }}
+        STRIPE_PRICE_ID: ${{ secrets.STRIPE_PRICE_ID }}
+
+    
+

@@ -9,3 +9,5 @@ static/concert/medias/new/
 build.sh
 build_prod.sh
 run_docker.sh
+docker-compose.yml
+docker-compose.rpi.yml

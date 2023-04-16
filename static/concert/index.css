@@ -32,7 +32,7 @@ body {
 }
 
 #showcase-background-1 {
-	background-image: url("/static/concert/medias/home.png");
+	background-image: url("https://res.cloudinary.com/detsjgggq/image/upload/v1681575895/home_g7jfxj.png");
 	height: 800px;
 }
 
