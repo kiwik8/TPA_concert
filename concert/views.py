@@ -1,5 +1,5 @@
-from django.views.decorators.csrf import csrf_exempt
 import os
+from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -14,6 +14,7 @@ from concert.models import Price, Client, Question
 from django.shortcuts import redirect
 from django.urls import resolve
 from django.templatetags.static import static
+from django.contrib.staticfiles import finders
 import stripe
 # Create your views here.
 
@@ -22,14 +23,12 @@ import stripe
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
-@csrf_protect
-def subscribe(request):
-    if request.method == "POST":
-        email = request.POST.get('email')
-        Client.objects.create(email=email)
-        return render(request, 'concert/success.html', {"message": "Merci pour votre inscription à la newsletter"})
-    else:
-        return render(request, 'concert/cancel.html', {"message" : "INVALID METHOD"})
+
+
+def pdf_view(request):
+    file_path = finders.find('concert/documents/tpa-ecrit.pdf')
+    response = FileResponse(open(file_path, 'rb'), content_type='application/pdf')
+    return response
 
 class CreateCheckoutSessionView(View):
     def post(self, request, *args, **kwargs):

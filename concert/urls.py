@@ -5,8 +5,8 @@ from concert.views import CreateCheckoutSessionView, CancelView, SuccessView, st
 
 urlpatterns = [
     path('', concert.views.index, name="index"),
+    path('pdf', concert.views.pdf_view, name="pdf_view"),
     path('buy', concert.views.buy, name="buy"),
-    path('subscribe', concert.views.subscribe, name="subscribe"),
     path('cancel', CancelView.as_view(), name="cancel"),
     path('success', SuccessView.as_view(), name="success"),
     path('create-checkout-session/', CreateCheckoutSessionView.as_view(), name='checkout'),

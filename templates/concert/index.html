@@ -1,8 +1,6 @@
 {% extends 'concert/base.html' %}
 {% load static %}
 {% block content %}
-     <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/195/195123.png" type="image/png">
-     
      <main>
           <section class="background grid grid-center" id="showcase-background-1">
                <div class="container text-white">
@@ -54,9 +52,9 @@
                               <div class="col-10 col-lg-6 text-white">
                                    <h2 class="text-uppercase display-4">En savoir plus...</h2>
                                    <hr class="hr-red">
-                                   <p class="mt-3 font-weight-100 letter-spacing-4px" style="font-size: 20px;">L’album réalisé se compose de 8 titres tous produits par Skanda. <br><br>La tracklist contenant : <br>- Tour de la terre<br>- Crazy ft. Skanda<br>- Couleurs<br>- Memo<br>- Walk in the city ft. Skanda, Kios<br>- Shine ft. Jeune X<br>- Wave<br>- Out!<br>
+                                   <p class="mt-3 font-weight-100 letter-spacing-4px" style="font-size: 20px;">L’album réalisé se compose de 8 titres tous produits par Skanda. <br><br>La tracklist contenant : <br>- Tour de la terre<br>- Crazy ft. Skanda<br>- Couleurs<br>- Memo<br>- Walk in the city ft. Skanda, Kios<br>- Shine ft. Jeune X<br>- Wave<br>- Out!<br> 
                                         <br><br> Essor inclut différents styles musicaux, les 8 titres sont variés et offrent aux auditeurs un large choix. BEA7S mélange drill, rage, trap, jersey et D3.</p>
-                                        <input class="pr-5 pl-5 pt-2 pb-2 btn text-uppercase font-weight-bold black btn-outline-white tpa_btn" type="submit" name="tpa" id="tpa" value="Voir le TPA">
+                                        <a href="{% url 'pdf_view' %}" class="pr-5 pl-5 pt-2 pb-2 btn text-uppercase font-weight-bold black btn-outline-white tpa_btn">Voir le TPA</a>
                               </div>
                               <div class="col-12 col-lg-6" style="display: flex; justify-content: center;">
                                    <aside class="card box-shadow bg-dark-primary" style="width: 370px;">

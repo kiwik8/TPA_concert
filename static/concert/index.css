@@ -191,7 +191,7 @@ a.text-red:hover {
     	background-repeat: no-repeat;
 	}
 
-	
+
 
 
 
@@ -212,6 +212,8 @@ a.text-red:hover {
 
 .tpa_btn{
 	margin-top: 60px;
+	margin-bottom: 50px;
+	color:white;
 }
 
 .article{
