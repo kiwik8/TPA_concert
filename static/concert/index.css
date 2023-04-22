@@ -189,6 +189,25 @@ a.text-red:hover {
 
 	#showcase-background-1 {
     	background-repeat: no-repeat;
+		background-image: linear-gradient(
+			rgb(17, 23, 8, 0.3),
+			rgba(8, 16, 1, 0.689)
+		),
+		url("/static/concert/medias/home.png");
+	}
+	#acheter{
+		margin: auto;
+	}
+	#infos{
+		font-size: 3rem;
+	}
+
+	#more{
+		margin: 15px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		flex: 0 0 100%;
 	}
 
 
