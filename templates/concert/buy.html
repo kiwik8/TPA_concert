@@ -6,15 +6,30 @@
 <section class="background grid grid-center" id="showcase-background-1">
     <div class="container text-white text-center">
         <h1 class="title">Réserver</h1>
+        <div id="quantity" class="text-uppercase text-white btn-gradient btn-outline-white">
+            Quantité : <input class="" type="number" name="quantity" value="1" min="1" max="10">
+       </div>
         <div class="row">
             <div class="col-4 box">
-                <img src="{% static 'concert/medias/ticket.png' %}" alt="" class="article">
+                <form action="{% url 'checkout' %}" method="post" id="ticket">
+                    {% csrf_token %}
+                    <img src="{% static 'concert/medias/ticket.png' %}" alt="" class="article" onclick="submitForm(this)">
+                    <input type="hidden" name='price' value="7">
+                </form>
             </div>
             <div class="col-4 box">
-                <h1 class="text-article">LES 2</h1>
+                <form action="{% url 'checkout' %}" method="post">
+                    {% csrf_token %}
+                    <h1 class="text-article" onclick="submitForm(this)">LES 2</h1>
+                    <input type="hidden" name="price" value="10">
+                </form>
             </div>
             <div class="col-4 box">
-                <img src="{% static 'concert/medias/cd.png' %}" alt="" class="article">
+                <form action="{% url 'checkout' %}" method="post">
+                    {% csrf_token %}
+                    <img src="{% static 'concert/medias/cd.png' %}" alt="" class="article" onclick="submitForm(this)">
+                    <input type="hidden" name="price" value="5">
+                </form>
             </div>
         </div>
     </div>
@@ -23,7 +38,18 @@
 
 
 
-
+<script>
+    function submitForm(element) {
+        var form = element.closest("form");
+        var quantity = document.getElementsByName("quantity")[0].value;
+        var input = document.createElement("input");
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", "quantity");
+        input.setAttribute("value", quantity);
+        form.appendChild(input);
+        form.submit();
+    }
+</script>
 
 
 

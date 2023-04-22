@@ -14,14 +14,19 @@ function copyStringToClipboard (str) {
     // Remove temporary element
     document.body.removeChild(el);
     }
+
+
 function getOut() {
-    location.href = url;
+    location.href = '/';
 
 }
 const menuButton = document.getElementById("menu-button");
 const menu = document.getElementById("menu");
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 var i = false;
+if (menuButton == null) {
+    setTimeout(getOut, 1000);
+  }
 let style = window.getComputedStyle(menuButton);
 var visibility = style.getPropertyValue('visibility');
 console.log(visibility);
@@ -37,9 +42,6 @@ else {
         i = true;
         setTimeout(getOut, 20000);
       }})}
-if (menuButton == null) {
-    setTimeout(getOut, 2000);
-  }
   
 
 

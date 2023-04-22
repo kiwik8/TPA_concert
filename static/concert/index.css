@@ -190,7 +190,12 @@ a.text-red:hover {
 	#showcase-background-1 {
     	background-repeat: no-repeat;
 	}
-  }
+
+	
+
+
+
+}
 
 
 .infos{
@@ -218,4 +223,9 @@ a.text-red:hover {
 	cursor: pointer;
 	transform: scale(1.13);
 	transition-duration: 200ms;
+}
+
+
+.intro-text{
+	font-weight: bold;
 }

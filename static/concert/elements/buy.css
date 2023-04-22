@@ -11,10 +11,46 @@
 
 
 .text-article:hover{
+    cursor: pointer;
     padding: 50px;
     background-color: #f7fdf0;
     color: black;
     transform: scale(1.1);
     border-radius: 7%;
     transition: 0.2s;
+}
+
+
+@media screen and (max-width: 767px) {
+	
+
+	.container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .row{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .article{
+        margin-top: 10%;
+        margin-bottom: 10%;
+        max-width: 66%;
+        height: auto;
+    }
+
+
+
+    .box{
+        max-width: 100%;
+    }
+
+
+
 }

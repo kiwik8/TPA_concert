@@ -4,6 +4,6 @@ TODO:
     - Ajouter le TPA
     - Tracklist mise en forme
     - Ticket -> Entrée
-    - Lien qui menent a une 2e page 
-    - Logo arrondi 
+    - Lien qui menent a une 2e page
+    - Logo arrondi
     - Images plus petites
