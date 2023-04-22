@@ -77,6 +77,8 @@ elif production is False:
 # SECURITY WARNING: don't run with debug turned on in production!
 #if not IS_HEROKU:
 DEBUG = True
+if production is True:
+    DEBUG = False
 # Application definition
 
 INSTALLED_APPS = [

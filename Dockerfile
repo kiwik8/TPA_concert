@@ -29,11 +29,15 @@ ARG STRIPE_PRODUCT_ID
 ENV STRIPE_PRODUCT_ID=$STRIPE_PRODUCT_ID
 ARG STRIPE_PRICE_ID
 ENV STRIPE_PRICE_ID=$STRIPE_PRICE_ID
+ENV HOME=/home/app
+ENV APP_HOME=/home/app/web
 
-
+RUN mkdir $HOME
+RUN mkdir $APP_HOME
+RUN mkdir $APP_HOME/staticfiles
+WORKDIR $APP_HOME
 RUN apt update && apt upgrade -y
 RUN apt install libpq-dev gcc iputils-ping -y
-WORKDIR /usr/src/app
 RUN pip install -U pip
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
