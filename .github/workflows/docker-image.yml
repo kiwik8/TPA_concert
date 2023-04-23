@@ -50,13 +50,6 @@ jobs:
         tags: martingouv/concert:nginx
         platforms: "linux/amd64 ,linux/arm/v7, linux/arm64/v8"
 
-    - name: Build and push 3
-      uses: docker/build-push-action@v3
-      with:
-        context: ./stripe-cli
-        push: true
-        tags: martingouv/concert:stripe
-        platforms: "linux/amd64 ,linux/arm/v7, linux/arm64/v8"
 
         
 

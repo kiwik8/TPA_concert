@@ -32,7 +32,7 @@ body {
 }
 
 #showcase-background-1 {
-	background-image: url("/static/concert/medias/home.png");
+	background-image: url("https://cdn.jsdelivr.net/gh/kiwik8/TPA_concert/static/concert/medias/home.png");
 	height: 800px;
 }
 
@@ -193,7 +193,7 @@ a.text-red:hover {
 			rgb(17, 23, 8, 0.3),
 			rgba(8, 16, 1, 0.689)
 		),
-		url("/static/concert/medias/home.png");
+		url("https://cdn.jsdelivr.net/gh/kiwik8/TPA_concert/static/concert/medias/home.png");
 	}
 	#acheter{
 		margin: auto;
