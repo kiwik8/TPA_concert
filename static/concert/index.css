@@ -203,6 +203,7 @@ a.text-red:hover {
 	}
 
 	#more{
+		max-width: 90%;
 		margin: 15px;
 		display: flex;
 		flex-direction: column;
@@ -249,4 +250,9 @@ a.text-red:hover {
 
 .intro-text{
 	font-weight: bold;
+}
+
+.lineuplink{
+	color: #000000;
+	text-decoration: underline;
 }

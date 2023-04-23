@@ -1,36 +1,3 @@
-{% extends 'concert/base.html' %}
-{% load inlinecss %}
-{% load static %}
-
-{% block content %}
-    {% inlinecss "concert/mail.css" %}
-    <div class="ticket ticket-1">
-  
-        <div class="date">
-          <span class="day">01</span>
-          <span class="month-and-time">AVRIL</br><span class="small">20H</span></span>
-        </div>
-      
-        <div class="artist">
-          <span class="name">BEA7S</span>
-          </br>
-      <span class="live small">CONCERT</span>
-        </div>
-      
-        <div class="location">
-          <span>TAMINES</span>
-          </br>
-          <span class="small"><span>RUE DU PREBYTERE, 1A</span>
-        </div>
-      
-        <div class="rip">
-        </div>
-        
-        <div class="cta">
-          <button class="buy" href="#">ACHETE TON TICKET</button>
-        </div>
-      
-      </div>   
-      {% endinlinecss %}   
-{% endblock content %}
-    
+Merci d'avoir réservé votre entrée! <br>
+Le nom associé à la réservation est <strong>{{ name }}</strong>, si ce n'est pas le cas répondez à ce mail avec votre nom.<br>
+Pour rappel, le concert est le 9 juin à 20h, si besoin un évènement à ajouter directement dans votre calendrier est disponible en pièce jointe

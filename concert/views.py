@@ -1,7 +1,8 @@
 import os
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
-from django.core.mail import send_mail
+from django.core.mail.message import EmailMessage
+from django.core.mail import get_connection
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.http import HttpResponse, FileResponse
@@ -26,9 +27,11 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 def pdf_view(request):
-    file_path = finders.find('concert/documents/tpa-ecrit.pdf')
-    response = FileResponse(open(file_path, 'rb'), content_type='application/pdf')
-    return response
+    # file_path = finders.find('concert/documents/tpa-ecrit.pdf')
+    url = "https://cdn.jsdelivr.net/gh/kiwik8/TPA_concert/static/concert/documents/tpa-ecrit.pdf"
+    return redirect(url)
+    #response = FileResponse(open(url, 'rb'), content_type='application/pdf')
+    #return response
 
 class CreateCheckoutSessionView(View):
     def post(self, request, *args, **kwargs):
@@ -104,8 +107,22 @@ def stripe_webhook(request):
             customer_email = session["customer_details"]["email"]
             customer_name = session["customer_details"]["name"]
             payment_intent = session["payment_intent"]
-
             Client.objects.create(name=customer_name, email=customer_email)
+
+            # Send an email to the customer with the order details
+            html_message = render_to_string('concert/mail.html', {'name': customer_name})
+            message = strip_tags(html_message)
+
+            email = EmailMessage()
+            email.subject = "Reçu de commande"
+            email.body = message
+            email.to = [customer_email]
+            email.from_email = "support@bea7s.store"
+
+            email.attach_file('static/concert/concert.ics', 'text/calendar')
+            email.send()
+
+
         return HttpResponse(status=200)
     except KeyError as e:
         return HttpResponse(status=405)
