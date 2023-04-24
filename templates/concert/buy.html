@@ -13,7 +13,7 @@
             <div class="col-4 box">
                 <form action="{% url 'checkout' %}" method="post" id="ticket">
                     {% csrf_token %}
-                    <img src="{% static 'concert/medias/ticket.png' %}" alt="" class="article" onclick="submitForm(this)">
+                    <img src="{% static 'concert/medias/ticket.png' %}" alt="" class="article ticket" onclick="submitForm(this)">
                     <input type="hidden" name='price' value="7">
                 </form>
             </div>
@@ -27,7 +27,7 @@
             <div class="col-4 box">
                 <form action="{% url 'checkout' %}" method="post">
                     {% csrf_token %}
-                    <img src="{% static 'concert/medias/cd.png' %}" alt="" class="article" onclick="submitForm(this)">
+                    <img src="{% static 'concert/medias/cd.png' %}" alt="" class="article cd" onclick="submitForm(this)">
                     <input type="hidden" name="price" value="5">
                 </form>
             </div>

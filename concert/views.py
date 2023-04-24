@@ -11,7 +11,7 @@ from django.views import View
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.views.decorators.csrf import csrf_protect
-from concert.models import Price, Client, Question
+from concert.models import Price, Client, Question, Product
 from django.shortcuts import redirect
 from django.urls import resolve
 from django.templatetags.static import static
@@ -41,8 +41,6 @@ class CreateCheckoutSessionView(View):
         product = price.product
         product.stock -= quantity
         product.save()
-        success = reverse('success')
-        cancel = reverse('cancel')
         if product.stock <=0:
             return render(request, 'concert/cancel.html', {"message" : "Plus de place disponible"}, status=201)
         checkout_session = stripe.checkout.Session.create(
@@ -107,7 +105,12 @@ def stripe_webhook(request):
             customer_email = session["customer_details"]["email"]
             customer_name = session["customer_details"]["name"]
             payment_intent = session["payment_intent"]
-            Client.objects.create(name=customer_name, email=customer_email)
+            price = session['amount_total'] # montant en cents
+            price = price / 100             # montant en euros
+            print(price)
+            price = Price.objects.get(price=price)
+            product = price.product
+            Client.objects.create(name=customer_name, email=customer_email, product=product)
 
             # Send an email to the customer with the order details
             html_message = render_to_string('concert/mail.html', {'name': customer_name})
