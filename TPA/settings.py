@@ -180,7 +180,7 @@ USE_TZ = True
 
 BASE_URL = "http://127.0.0.1:8000"
 if production is True:
-    BASE_URL = "http://martingouv.ddns.net"
+    BASE_URL = "http://bea7s.store"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 

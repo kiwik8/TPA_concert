@@ -141,10 +141,13 @@ a.text-red:hover {
 
 .artist{
 	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+
 }
 
 .artist_green{
 	-webkit-filter: grayscale(0%);
+	filter: grayscale(0%);
 }
 
 .artist:hover{
