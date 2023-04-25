@@ -39,8 +39,6 @@ class CreateCheckoutSessionView(View):
         price = request.POST.get('price')
         price = Price.objects.get(price=price)
         product = price.product
-        product.stock -= quantity
-        product.save()
         if product.stock <=0:
             return render(request, 'concert/cancel.html', {"message" : "Plus de place disponible"}, status=201)
         checkout_session = stripe.checkout.Session.create(
@@ -108,8 +106,14 @@ def stripe_webhook(request):
             price = session['amount_total'] # montant en cents
             price = price / 100             # montant en euros
             print(price)
-            price = Price.objects.get(price=price)
+            try:
+                price = Price.objects.get(price=price)
+            except:
+                price = price/7
+                price = Price.objects.get(price=price)
             product = price.product
+            product.stock -= 1
+            product.save()
             Client.objects.create(name=customer_name, email=customer_email, product=product)
 
             # Send an email to the customer with the order details
