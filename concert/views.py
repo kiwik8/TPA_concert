@@ -117,17 +117,18 @@ def stripe_webhook(request):
             Client.objects.create(name=customer_name, email=customer_email, product=product)
 
             # Send an email to the customer with the order details
-            html_message = render_to_string('concert/mail.html', {'name': customer_name})
-            message = strip_tags(html_message)
+            #html_message = render_to_string('concert/mail.html', {'name': customer_name})
+            # message = strip_tags(html_message)
 
-            email = EmailMessage()
+            ### EMail part 
+            """ email = EmailMessage()
             email.subject = "Reçu de commande"
             email.body = message
             email.to = [customer_email]
             email.from_email = "support@bea7s.store"
 
             email.attach_file('static/concert/concert.ics', 'text/calendar')
-            email.send()
+            email.send()"""
 
 
         return HttpResponse(status=200)
