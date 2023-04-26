@@ -42,7 +42,7 @@ class CreateCheckoutSessionView(View):
         if product.stock <=0:
             return render(request, 'concert/cancel.html', {"message" : "Plus de place disponible"}, status=201)
         checkout_session = stripe.checkout.Session.create(
-            payment_method_types=['card'],
+            payment_method_types=['card', 'bancontact'],
             line_items=[
                 {
                     'price': price.stripe_price_id,
