@@ -193,8 +193,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_PORT = 465
-EMAIL_USE_TLS = True
-STOCK = 50
+EMAIL_USE_SSL = True
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 PROD = production
 
 # config

@@ -23,6 +23,7 @@ class Client(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=100)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
 
     def __str__(self):
         return self.name

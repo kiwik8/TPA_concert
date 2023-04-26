@@ -60,16 +60,17 @@ class SuccessView(TemplateView):
     template_name = "concert/success.html"
     def get_context_data(self, **kwargs):
         context = super(SuccessView, self).get_context_data(**kwargs)
+        message = "Paiement effectué avec succès"
         try:
             if context['message'] is None:
                 context['paid'] = True
-                context['message'] = "Paiement effectué avec succès"
+                context['message'] = message
             else:
                 context['paid'] = False
             return context
         except KeyError:
             context['paid'] = True
-            context['message'] = "Paiement effectué avec succès"
+            context['message'] = message
             return context
 
 
@@ -106,29 +107,46 @@ def stripe_webhook(request):
             price = session['amount_total'] # montant en cents
             price = price / 100             # montant en euros
             print(price)
+            quantity = 1
             try:
                 price = Price.objects.get(price=price)
             except:
-                price = price/7
+                if price%7 == 0:
+                    quantity = price/7
+                    price = 7
+                elif price%10 == 0:
+                    quantity = price/10
+                    price= 10
+                elif price%5 == 0:
+                    quantity = price/5
+                    price = 5
                 price = Price.objects.get(price=price)
             product = price.product
-            product.stock -= 1
+            p = Product.objects.get(name="Pack Ticket+CD")
+            if product == p:
+                cd = Product.objects.get(name="CD")
+                ticket = Product.objects.get(name="Ticket")
+                ticket.stock -= quantity
+                cd.stock -= quantity
+                ticket.save()
+                cd.save()
+            product.stock -= quantity
             product.save()
-            Client.objects.create(name=customer_name, email=customer_email, product=product)
+            Client.objects.create(name=customer_name, email=customer_email, product=product, quantity=quantity)
 
             # Send an email to the customer with the order details
-            #html_message = render_to_string('concert/mail.html', {'name': customer_name})
-            # message = strip_tags(html_message)
+            html_message = render_to_string('concert/mail.html', {'name': customer_name})
+            message = strip_tags(html_message)
 
             ### EMail part 
-            """ email = EmailMessage()
+            email = EmailMessage()
             email.subject = "Reçu de commande"
             email.body = message
             email.to = [customer_email]
             email.from_email = "support@bea7s.store"
 
-            email.attach_file('static/concert/concert.ics', 'text/calendar')
-            email.send()"""
+            # email.attach_file('static/concert/concert.ics', 'text/calendar')
+            email.send()
 
 
         return HttpResponse(status=200)
