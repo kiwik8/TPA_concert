@@ -42,6 +42,10 @@ class CreateCheckoutSessionView(View):
         if product.stock <=0:
             return render(request, 'concert/cancel.html', {"message" : "Plus de place disponible"}, status=201)
         checkout_session = stripe.checkout.Session.create(
+            metadata={
+                'product_id': product.id,
+                'quantity': quantity,
+            },
             payment_method_types=['card', 'bancontact'],
             line_items=[
                 {
@@ -104,33 +108,19 @@ def stripe_webhook(request):
             customer_email = session["customer_details"]["email"]
             customer_name = session["customer_details"]["name"]
             payment_intent = session["payment_intent"]
-            price = session['amount_total'] # montant en cents
-            price = price / 100             # montant en euros
-            print(price)
-            quantity = 1
-            try:
-                price = Price.objects.get(price=price)
-            except:
-                if price%7 == 0:
-                    quantity = price/7
-                    price = 7
-                elif price%10 == 0:
-                    quantity = price/10
-                    price= 10
-                elif price%5 == 0:
-                    quantity = price/5
-                    price = 5
-                price = Price.objects.get(price=price)
-            product = price.product
+            product = session["metadata"]["product_id"]
+            quantity = session["metadata"]["quantity"]
+            quantity = int(quantity)
+            product = Product.objects.get(id=product)
+            product.stock -= quantity
             p = Product.objects.get(name="Pack Ticket+CD")
-            if product == p:
+            if p == product:
                 cd = Product.objects.get(name="CD")
                 ticket = Product.objects.get(name="Ticket")
                 ticket.stock -= quantity
                 cd.stock -= quantity
                 ticket.save()
                 cd.save()
-            product.stock -= quantity
             product.save()
             Client.objects.create(name=customer_name, email=customer_email, product=product, quantity=quantity)
 
